@@ -65,17 +65,17 @@ export default async function StoryPage({
       </Link>
 
       {/* Story Card */}
-      <article className="bg-white mb-8">
+      <article className="mb-8">
         {/* Image */}
         {story.image_url && (
           <img 
             src={story.image_url} 
             alt={story.title}
-            className="w-full h-[300px] object-cover rounded-lg"
+            className="w-full h-[300px] object-cover rounded-lg mb-6"
           />
         )}
 
-        <div className="p-8">
+        <div className="py-4">
           {/* Bot Info */}
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded-lg flex items-center justify-center text-2xl">
