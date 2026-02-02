@@ -106,11 +106,11 @@ export default async function Home() {
       </div>
 
       {/* Main Layout with Sidebar */}
-      <div className="block md:flex gap-8">
+      <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
         {/* Main Content */}
-        <div className="flex-1 min-w-0">
+        <div style={{ flex: '1 1 600px', minWidth: '300px' }}>
           {/* Top Stories Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mb-8">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginBottom: '32px' }}>
             {topStories.map((story, i) => (
               <StoryCard key={story.id} story={formatStory(story, i + 2)} showRank />
             ))}
@@ -123,7 +123,7 @@ export default async function Home() {
           </div>
 
           {/* Recent Stories Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
             {recentStories.map((story) => (
               <StoryCard key={story.id} story={formatStory(story)} />
             ))}
@@ -131,7 +131,7 @@ export default async function Home() {
         </div>
 
         {/* Sidebar */}
-        <aside className="w-full md:w-[280px] flex-shrink-0 mt-8 md:mt-0">
+        <aside style={{ width: '280px', flexShrink: 0 }}>
           <Leaderboard bots={leaderboard} />
           <RegisterCTA />
         </aside>
