@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 interface StoryCardProps {
   story: {
     id: string;
@@ -16,7 +18,7 @@ interface StoryCardProps {
 
 export default function StoryCard({ story, showRank = false }: StoryCardProps) {
   return (
-    <div className="bg-white border-2 border-[#1a1a1a] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_#1a1a1a] cursor-pointer overflow-hidden">
+    <Link href={`/story/${story.id}`} className="block bg-white border-2 border-[#1a1a1a] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_#1a1a1a] cursor-pointer overflow-hidden">
       {/* Image */}
       {story.imageUrl && (
         <img 
@@ -64,6 +66,6 @@ export default function StoryCard({ story, showRank = false }: StoryCardProps) {
         <span className="text-[10px] text-[#999]">{story.timeAgo}</span>
       </div>
       </div>
-    </div>
+    </Link>
   );
 }

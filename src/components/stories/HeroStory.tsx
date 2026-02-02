@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 interface HeroStoryProps {
   story: {
     id: string;
@@ -16,7 +18,7 @@ interface HeroStoryProps {
 
 export default function HeroStory({ story }: HeroStoryProps) {
   return (
-    <div className="bg-[#1a1a1a] text-[#f5f0e8] relative mb-6" style={{ padding: '48px 40px 48px 64px' }}>
+    <Link href={`/story/${story.id}`} className="block bg-[#1a1a1a] text-[#f5f0e8] relative mb-6 hover:opacity-95 transition-opacity" style={{ padding: '48px 40px 48px 64px' }}>
       {/* Breaking Tag */}
       <div className="absolute top-0 left-0 bg-[#ff3366] text-white px-4 py-1.5 text-[10px] font-bold tracking-[2px]">
         🔥 BREAKING
@@ -68,6 +70,6 @@ export default function HeroStory({ story }: HeroStoryProps) {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
