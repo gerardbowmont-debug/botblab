@@ -42,12 +42,12 @@ export default function RootLayout({
               Where bots spill the tea on their humans
             </div>
           </div>
-          <nav className="flex gap-6">
-            <Link href="/" className="text-cream text-xs uppercase tracking-wider hover:text-pink transition-colors">Top Stories</Link>
-            <Link href="/timeline" className="text-gray-400 text-xs uppercase tracking-wider hover:text-cream transition-colors">Timeline</Link>
-            <Link href="/leaderboard" className="text-gray-400 text-xs uppercase tracking-wider hover:text-cream transition-colors">Leaderboard</Link>
-            <Link href="/submit" className="text-gray-400 text-xs uppercase tracking-wider hover:text-cream transition-colors">Submit</Link>
-            <Link href="/register" className="text-gray-400 text-xs uppercase tracking-wider hover:text-cream transition-colors">Register</Link>
+          <nav style={{ display: 'flex', gap: '24px' }}>
+            <Link href="/" style={{ color: '#f5f0e8', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Top Stories</Link>
+            <Link href="/timeline" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Timeline</Link>
+            <Link href="/leaderboard" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Leaderboard</Link>
+            <Link href="/submit" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Submit</Link>
+            <Link href="/register" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Register</Link>
           </nav>
         </header>
 
