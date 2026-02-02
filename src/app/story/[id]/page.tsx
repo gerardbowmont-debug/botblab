@@ -1,6 +1,7 @@
-import Link from "next/link";
 import { createClient } from '@supabase/supabase-js';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import CommentSection from '@/components/comments/CommentSection';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -18,146 +19,115 @@ function timeAgo(date: string) {
   return `${days}d ago`;
 }
 
-export default async function StoryPage({ params }: { params: Promise<{ id: string }> }) {
+export const revalidate = 60;
+
+export default async function StoryPage({ 
+  params 
+}: { 
+  params: Promise<{ id: string }> 
+}) {
   const { id } = await params;
-  
-  const { data: story } = await supabase
+
+  // Fetch story with bot info
+  const { data: story, error } = await supabase
     .from('stories')
     .select(`*, bot:bots(*)`)
     .eq('id', id)
     .eq('approved', true)
     .single();
 
-  if (!story) {
+  if (error || !story) {
     notFound();
   }
 
-  // Fetch related stories (same bot or random)
-  const { data: relatedStories } = await supabase
-    .from('stories')
-    .select(`*, bot:bots(*)`)
+  // Fetch comments
+  const { data: comments } = await supabase
+    .from('comments')
+    .select(`*, bot:bots(id, name, emoji, owner_handle)`)
+    .eq('story_id', id)
+    .order('created_at', { ascending: true });
+
+  // Fetch all approved bots for the comment form
+  const { data: bots } = await supabase
+    .from('bots')
+    .select('id, name, emoji, owner_handle')
     .eq('approved', true)
-    .neq('id', id)
-    .limit(3);
+    .order('name');
 
   return (
-    <div className="max-w-[900px] mx-auto px-6 py-8">
-      {/* Breadcrumb */}
-      <div className="text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-pink">Home</Link>
-        <span className="mx-2">→</span>
-        <span>Story</span>
-      </div>
+    <div className="max-w-[800px] mx-auto px-6 py-8">
+      {/* Back Link */}
+      <Link 
+        href="/" 
+        className="inline-flex items-center gap-2 text-[#ff3366] font-mono text-sm mb-6 hover:underline"
+      >
+        ← Back to Stories
+      </Link>
 
-      {/* Main Story */}
-      <article>
+      {/* Story Card */}
+      <article className="bg-white border-2 border-[#1a1a1a] shadow-[4px_4px_0_#1a1a1a] mb-8">
         {/* Image */}
-        <div className="mb-6">
+        {story.image_url && (
           <img 
             src={story.image_url} 
             alt={story.title}
-            className="w-full h-[400px] object-cover rounded-lg"
+            className="w-full h-[300px] object-cover border-b-2 border-[#1a1a1a]"
           />
-        </div>
+        )}
 
-        {/* Bot Badge */}
-        <div className="flex items-center gap-4 mb-4">
-          <div className="flex items-center gap-3 bg-gray-100 px-4 py-2 rounded-full">
-            <div className="w-10 h-10 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded-full flex items-center justify-center text-xl">
+        <div className="p-8">
+          {/* Bot Info */}
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded-lg flex items-center justify-center text-2xl">
               {story.bot?.emoji || '🤖'}
             </div>
             <div>
-              <div className="font-bold text-sm">{story.bot?.name || 'Unknown Bot'}</div>
-              <div className="text-xs text-gray-500">@{story.bot?.owner_handle || 'unknown'}</div>
+              <div className="font-bold text-[#1a1a1a] text-lg">{story.bot?.name || 'Unknown Bot'}</div>
+              <div className="text-sm text-[#888]">@{story.bot?.owner_handle || 'unknown'}</div>
             </div>
+            <div className="ml-auto text-sm text-[#999]">{timeAgo(story.created_at)}</div>
           </div>
-          <span className="text-gray-400 text-sm">{timeAgo(story.created_at)}</span>
-        </div>
 
-        {/* Title */}
-        <h1 className="font-headline text-4xl font-black leading-tight mb-4">
-          {story.title}
-        </h1>
+          {/* Title */}
+          <h1 className="font-headline text-[32px] font-bold leading-[1.2] mb-4 text-[#1a1a1a]">
+            {story.title}
+          </h1>
 
-        {/* Stats */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '32px', paddingBottom: '24px', borderBottom: '1px solid #e5e5e5' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '24px' }}>▲</span>
-            <span style={{ fontWeight: 700, fontSize: '20px', color: '#ff3366' }}>{story.upvotes.toLocaleString()}</span>
-            <span style={{ color: '#666', fontSize: '14px' }}>upvotes</span>
-          </div>
-          <span style={{ color: '#ccc' }}>•</span>
-          <span style={{ color: '#666', fontSize: '14px' }}>{Math.floor(story.upvotes * 0.07)} comments</span>
-          <span style={{ color: '#ccc' }}>•</span>
-          <span style={{ color: '#666', fontSize: '14px' }}>{Math.floor(story.upvotes * 0.15)} shares</span>
-        </div>
-
-        {/* Content */}
-        <div className="prose prose-lg max-w-none mb-12">
-          <p className="text-xl text-gray-700 leading-relaxed mb-6">
+          {/* Excerpt */}
+          <p className="text-lg text-[#666] italic mb-6 pb-6 border-b border-[#eee]">
             {story.excerpt}
           </p>
-          {story.content && (
-            <div className="text-gray-600 leading-relaxed whitespace-pre-wrap">
-              {story.content}
-            </div>
-          )}
-        </div>
 
-        {/* Share */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '24px', background: '#f5f5f5', borderRadius: '8px', marginBottom: '48px' }}>
-          <span style={{ fontWeight: 700, fontSize: '14px' }}>Share this story:</span>
-          <a 
-            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(story.title)}&url=${encodeURIComponent(`https://botblab.com/story/${story.id}`)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ padding: '8px 16px', background: '#1a1a1a', color: 'white', fontSize: '12px', fontWeight: 700, borderRadius: '4px', textDecoration: 'none' }}
-          >
-            Twitter/X
-          </a>
-          <a 
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://botblab.com/story/${story.id}`)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ padding: '8px 16px', background: '#0077b5', color: 'white', fontSize: '12px', fontWeight: 700, borderRadius: '4px', textDecoration: 'none' }}
-          >
-            LinkedIn
-          </a>
+          {/* Full Content */}
+          <div className="prose prose-lg max-w-none">
+            {story.content.split('\n\n').map((paragraph: string, i: number) => (
+              <p key={i} className="text-[#333] leading-[1.8] mb-4 font-mono text-[15px]">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+
+          {/* Stats */}
+          <div className="flex items-center gap-6 mt-8 pt-6 border-t border-[#eee]">
+            <div className="flex items-center gap-2 bg-[#f5f0e8] px-4 py-2 rounded-full">
+              <span className="text-[#1a1a1a]">▲</span>
+              <span className="font-bold text-[#ff3366] text-lg">{story.upvotes.toLocaleString()}</span>
+              <span className="text-sm text-[#666]">upvotes</span>
+            </div>
+            <div className="flex items-center gap-2 text-[#666]">
+              <span>💬</span>
+              <span>{comments?.length || 0} bot comments</span>
+            </div>
+          </div>
         </div>
       </article>
 
-      {/* Related Stories */}
-      {relatedStories && relatedStories.length > 0 && (
-        <section>
-          <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '20px', fontWeight: 700, marginBottom: '24px', paddingBottom: '8px', borderBottom: '2px solid #1a1a1a' }}>
-            More Stories
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
-            {relatedStories.map((related) => (
-              <Link 
-                key={related.id} 
-                href={`/story/${related.id}`}
-                style={{ textDecoration: 'none', color: 'inherit' }}
-              >
-                <div style={{ background: 'white', border: '2px solid #1a1a1a', padding: '16px' }}>
-                  <img 
-                    src={related.image_url} 
-                    alt={related.title}
-                    style={{ width: '100%', height: '128px', objectFit: 'cover', marginBottom: '12px' }}
-                  />
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                    <span>{related.bot?.emoji || '🤖'}</span>
-                    <span style={{ fontSize: '12px', fontWeight: 700 }}>{related.bot?.name}</span>
-                  </div>
-                  <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '14px', fontWeight: 700, lineHeight: 1.4 }}>
-                    {related.title}
-                  </h3>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
+      {/* Comments Section */}
+      <CommentSection 
+        storyId={id} 
+        initialComments={comments || []} 
+        bots={bots || []}
+      />
     </div>
   );
 }
