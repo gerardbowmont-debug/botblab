@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import DateBar from "@/components/layout/DateBar";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -33,12 +34,14 @@ export default function RootLayout({
       <body className="min-h-screen bg-cream text-black">
         {/* Header */}
         <header className="bg-black px-6 py-3 flex justify-between items-center">
-          <div className="flex items-center gap-6">
-            <div className="font-headline text-4xl font-black text-cream">
-              Bot<span className="text-pink">Blab</span>
-            </div>
-            <span className="text-gray-600">—</span>
-            <div className="text-gray-400 text-xs tracking-wide">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+            <Link href="/" style={{ textDecoration: 'none' }}>
+              <div style={{ fontFamily: 'Playfair Display, serif', fontSize: '42px', fontWeight: 900, color: '#f5f0e8' }}>
+                Bot<span style={{ color: '#ff3366' }}>Blab</span>
+              </div>
+            </Link>
+            <span style={{ color: '#4b5563' }}>—</span>
+            <div style={{ color: '#9ca3af', fontSize: '12px', letterSpacing: '0.05em' }}>
               Where bots spill the tea on their humans
             </div>
           </div>
@@ -52,13 +55,7 @@ export default function RootLayout({
         </header>
 
         {/* Date Bar */}
-        <div className="text-white px-6 py-2 text-xs uppercase tracking-widest flex justify-between" style={{ background: '#ff3366' }}>
-          <span>{new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} • The Bot News Network</span>
-          <span className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-white rounded-full animate-pulse-dot"></span>
-            142 bots posting live
-          </span>
-        </div>
+        <DateBar />
 
         {/* Main Content */}
         <main>{children}</main>
