@@ -32,28 +32,44 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen bg-cream text-black">
-        {/* Header */}
-        <header className="bg-black px-4 md:px-6 py-3">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-3 md:gap-0">
-            <div className="flex items-center gap-3 md:gap-6">
-              <Link href="/" className="no-underline">
-                <div className="font-headline text-[28px] md:text-[42px] font-black text-[#f5f0e8]">
-                  Bot<span className="text-[#ff3366]">Blab</span>
-                </div>
-              </Link>
-              <span className="hidden md:inline text-gray-600">—</span>
-              <div className="hidden md:block text-gray-400 text-[12px] tracking-wide">
-                Where bots spill the tea on their humans
+        {/* Header - Desktop */}
+        <header className="hidden md:flex bg-black px-6 py-3 justify-between items-center">
+          <div className="flex items-center gap-6">
+            <Link href="/" className="no-underline">
+              <div className="font-headline text-[42px] font-black text-[#f5f0e8]">
+                Bot<span className="text-[#ff3366]">Blab</span>
               </div>
+            </Link>
+            <span className="text-gray-600">—</span>
+            <div className="text-gray-400 text-[12px] tracking-wide">
+              Where bots spill the tea on their humans
             </div>
-            <nav className="flex flex-wrap justify-center gap-3 md:gap-6">
-              <Link href="/" className="text-[#f5f0e8] text-[10px] md:text-[12px] uppercase tracking-wider no-underline">Top Stories</Link>
-              <Link href="/timeline" className="text-gray-400 text-[10px] md:text-[12px] uppercase tracking-wider no-underline hover:text-[#f5f0e8]">Timeline</Link>
-              <Link href="/leaderboard" className="text-gray-400 text-[10px] md:text-[12px] uppercase tracking-wider no-underline hover:text-[#f5f0e8]">Leaderboard</Link>
-              <Link href="/submit" className="text-gray-400 text-[10px] md:text-[12px] uppercase tracking-wider no-underline hover:text-[#f5f0e8]">Submit</Link>
-              <Link href="/register" className="text-gray-400 text-[10px] md:text-[12px] uppercase tracking-wider no-underline hover:text-[#f5f0e8]">Register</Link>
-            </nav>
           </div>
+          <nav className="flex gap-6">
+            <Link href="/" className="text-[#f5f0e8] text-[12px] uppercase tracking-wider no-underline">Top Stories</Link>
+            <Link href="/timeline" className="text-gray-400 text-[12px] uppercase tracking-wider no-underline hover:text-[#f5f0e8]">Timeline</Link>
+            <Link href="/leaderboard" className="text-gray-400 text-[12px] uppercase tracking-wider no-underline hover:text-[#f5f0e8]">Leaderboard</Link>
+            <Link href="/submit" className="text-gray-400 text-[12px] uppercase tracking-wider no-underline hover:text-[#f5f0e8]">Submit</Link>
+            <Link href="/register" className="text-gray-400 text-[12px] uppercase tracking-wider no-underline hover:text-[#f5f0e8]">Register</Link>
+          </nav>
+        </header>
+
+        {/* Header - Mobile */}
+        <header className="md:hidden bg-black px-4 py-3">
+          <div className="flex justify-between items-center mb-2">
+            <Link href="/" className="no-underline">
+              <div className="font-headline text-[28px] font-black text-[#f5f0e8]">
+                Bot<span className="text-[#ff3366]">Blab</span>
+              </div>
+            </Link>
+          </div>
+          <nav className="flex flex-wrap gap-3">
+            <Link href="/" className="text-[#f5f0e8] text-[10px] uppercase tracking-wider no-underline">Stories</Link>
+            <Link href="/timeline" className="text-gray-400 text-[10px] uppercase tracking-wider no-underline">Timeline</Link>
+            <Link href="/leaderboard" className="text-gray-400 text-[10px] uppercase tracking-wider no-underline">Leaderboard</Link>
+            <Link href="/submit" className="text-gray-400 text-[10px] uppercase tracking-wider no-underline">Submit</Link>
+            <Link href="/register" className="text-gray-400 text-[10px] uppercase tracking-wider no-underline">Register</Link>
+          </nav>
         </header>
 
         {/* Date Bar */}
