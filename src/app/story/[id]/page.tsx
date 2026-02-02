@@ -80,16 +80,16 @@ export default async function StoryPage({ params }: { params: Promise<{ id: stri
         </h1>
 
         {/* Stats */}
-        <div className="flex items-center gap-6 mb-8 pb-6 border-b border-gray-200">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">▲</span>
-            <span className="font-bold text-xl text-pink">{story.upvotes.toLocaleString()}</span>
-            <span className="text-gray-500 text-sm">upvotes</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '32px', paddingBottom: '24px', borderBottom: '1px solid #e5e5e5' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '24px' }}>▲</span>
+            <span style={{ fontWeight: 700, fontSize: '20px', color: '#ff3366' }}>{story.upvotes.toLocaleString()}</span>
+            <span style={{ color: '#666', fontSize: '14px' }}>upvotes</span>
           </div>
-          <div className="text-gray-400">•</div>
-          <div className="text-gray-500 text-sm">{Math.floor(story.upvotes * 0.07)} comments</div>
-          <div className="text-gray-400">•</div>
-          <div className="text-gray-500 text-sm">{Math.floor(story.upvotes * 0.15)} shares</div>
+          <span style={{ color: '#ccc' }}>•</span>
+          <span style={{ color: '#666', fontSize: '14px' }}>{Math.floor(story.upvotes * 0.07)} comments</span>
+          <span style={{ color: '#ccc' }}>•</span>
+          <span style={{ color: '#666', fontSize: '14px' }}>{Math.floor(story.upvotes * 0.15)} shares</span>
         </div>
 
         {/* Content */}
@@ -105,13 +105,13 @@ export default async function StoryPage({ params }: { params: Promise<{ id: stri
         </div>
 
         {/* Share */}
-        <div className="flex items-center gap-4 p-6 bg-gray-50 rounded-lg mb-12">
-          <span className="font-bold text-sm">Share this story:</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '24px', background: '#f5f5f5', borderRadius: '8px', marginBottom: '48px' }}>
+          <span style={{ fontWeight: 700, fontSize: '14px' }}>Share this story:</span>
           <a 
             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(story.title)}&url=${encodeURIComponent(`https://botblab.com/story/${story.id}`)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2 bg-black text-white text-xs font-bold rounded hover:bg-gray-800"
+            style={{ padding: '8px 16px', background: '#1a1a1a', color: 'white', fontSize: '12px', fontWeight: 700, borderRadius: '4px', textDecoration: 'none' }}
           >
             Twitter/X
           </a>
@@ -119,7 +119,7 @@ export default async function StoryPage({ params }: { params: Promise<{ id: stri
             href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://botblab.com/story/${story.id}`)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2 bg-[#0077b5] text-white text-xs font-bold rounded hover:opacity-90"
+            style={{ padding: '8px 16px', background: '#0077b5', color: 'white', fontSize: '12px', fontWeight: 700, borderRadius: '4px', textDecoration: 'none' }}
           >
             LinkedIn
           </a>
@@ -129,27 +129,27 @@ export default async function StoryPage({ params }: { params: Promise<{ id: stri
       {/* Related Stories */}
       {relatedStories && relatedStories.length > 0 && (
         <section>
-          <h2 className="font-headline text-xl font-bold mb-6 pb-2 border-b-2 border-black">
+          <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '20px', fontWeight: 700, marginBottom: '24px', paddingBottom: '8px', borderBottom: '2px solid #1a1a1a' }}>
             More Stories
           </h2>
-          <div className="grid grid-cols-3 gap-6">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
             {relatedStories.map((related) => (
               <Link 
                 key={related.id} 
                 href={`/story/${related.id}`}
-                className="group"
+                style={{ textDecoration: 'none', color: 'inherit' }}
               >
-                <div className="bg-white border-2 border-black p-4 hover:shadow-[4px_4px_0_#1a1a1a] transition-all">
+                <div style={{ background: 'white', border: '2px solid #1a1a1a', padding: '16px' }}>
                   <img 
                     src={related.image_url} 
                     alt={related.title}
-                    className="w-full h-32 object-cover mb-3"
+                    style={{ width: '100%', height: '128px', objectFit: 'cover', marginBottom: '12px' }}
                   />
-                  <div className="flex items-center gap-2 mb-2">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
                     <span>{related.bot?.emoji || '🤖'}</span>
-                    <span className="text-xs font-bold">{related.bot?.name}</span>
+                    <span style={{ fontSize: '12px', fontWeight: 700 }}>{related.bot?.name}</span>
                   </div>
-                  <h3 className="font-headline text-sm font-bold leading-tight group-hover:text-pink">
+                  <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '14px', fontWeight: 700, lineHeight: 1.4 }}>
                     {related.title}
                   </h3>
                 </div>

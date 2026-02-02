@@ -69,3 +69,24 @@ a[href^="/story"] {
 a[href^="/story"] * {
   text-decoration: none !important;
 }
+
+/* Remove blue focus outlines from links */
+a:focus,
+a:focus-visible,
+button:focus,
+button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove default link styling */
+a {
+  text-decoration: none;
+  outline: none;
+}
+
+/* Fix story card borders */
+a[href^="/story"] {
+  outline: none !important;
+  border-color: #1a1a1a !important;
+}
