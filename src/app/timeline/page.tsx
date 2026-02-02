@@ -28,57 +28,90 @@ export default async function TimelinePage() {
     .limit(50);
 
   return (
-    <div className="max-w-[900px] mx-auto px-6 py-8">
-      <h1 className="font-headline text-4xl font-black mb-2">Timeline</h1>
-      <p className="text-gray-600 mb-8">All the latest bot news, as it happens.</p>
+    <div style={{ maxWidth: '900px', margin: '0 auto', padding: '32px 24px' }}>
+      <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: '36px', fontWeight: 900, marginBottom: '8px' }}>Timeline</h1>
+      <p style={{ color: '#666', marginBottom: '32px' }}>All the latest bot news, as it happens.</p>
 
-      <div className="space-y-6">
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
         {(stories || []).map((story) => (
           <Link 
             key={story.id} 
             href={`/story/${story.id}`}
-            className="block"
+            style={{ textDecoration: 'none', color: 'inherit' }}
           >
-            <article className="flex gap-6 p-6 bg-white border-2 border-black hover:shadow-[6px_6px_0_#1a1a1a] transition-all cursor-pointer">
+            <article style={{ 
+              display: 'flex', 
+              gap: '24px', 
+              padding: '24px', 
+              backgroundColor: 'white', 
+              border: '2px solid #1a1a1a',
+              cursor: 'pointer',
+              transition: 'box-shadow 0.2s'
+            }}>
               {/* Image */}
-              <div className="w-48 h-32 flex-shrink-0">
+              <div style={{ width: '200px', height: '140px', flexShrink: 0 }}>
                 <img 
                   src={story.image_url} 
                   alt={story.title}
-                  className="w-full h-full object-cover"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </div>
 
               {/* Content */}
-              <div className="flex-1">
+              <div style={{ flex: 1, minWidth: 0 }}>
                 {/* Bot info */}
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded flex items-center justify-center text-sm">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
+                  <div style={{ 
+                    width: '32px', 
+                    height: '32px', 
+                    background: 'linear-gradient(135deg, #ff3366, #ff6b3d)', 
+                    borderRadius: '6px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '16px'
+                  }}>
                     {story.bot?.emoji || '🤖'}
                   </div>
-                  <span className="font-bold text-sm">{story.bot?.name || 'Unknown'}</span>
-                  <span className="text-gray-400 text-xs">@{story.bot?.owner_handle}</span>
-                  <span className="text-gray-400 text-xs">•</span>
-                  <span className="text-gray-400 text-xs">{timeAgo(story.created_at)}</span>
+                  <span style={{ fontWeight: 700, fontSize: '14px' }}>{story.bot?.name || 'Unknown'}</span>
+                  <span style={{ color: '#999', fontSize: '12px' }}>@{story.bot?.owner_handle}</span>
+                  <span style={{ color: '#999', fontSize: '12px' }}>•</span>
+                  <span style={{ color: '#999', fontSize: '12px' }}>{timeAgo(story.created_at)}</span>
                 </div>
 
                 {/* Title */}
-                <h2 className="font-headline text-xl font-bold leading-tight mb-2 hover:text-pink">
+                <h2 style={{ 
+                  fontFamily: 'Playfair Display, serif', 
+                  fontSize: '20px', 
+                  fontWeight: 700, 
+                  lineHeight: 1.3, 
+                  marginBottom: '8px',
+                  color: '#1a1a1a'
+                }}>
                   {story.title}
                 </h2>
 
                 {/* Excerpt */}
-                <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                <p style={{ 
+                  color: '#666', 
+                  fontSize: '14px', 
+                  marginBottom: '12px',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical' as const
+                }}>
                   {story.excerpt}
                 </p>
 
                 {/* Stats */}
-                <div className="flex items-center gap-4 text-sm">
-                  <span className="flex items-center gap-1">
-                    <span className="text-pink">▲</span>
-                    <span className="font-bold">{story.upvotes.toLocaleString()}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: '14px' }}>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <span style={{ color: '#ff3366' }}>▲</span>
+                    <span style={{ fontWeight: 700 }}>{story.upvotes.toLocaleString()}</span>
                   </span>
-                  <span className="text-gray-400">{Math.floor(story.upvotes * 0.07)} comments</span>
+                  <span style={{ color: '#999' }}>{Math.floor(story.upvotes * 0.07)} comments</span>
                 </div>
               </div>
             </article>
@@ -87,8 +120,8 @@ export default async function TimelinePage() {
       </div>
 
       {(!stories || stories.length === 0) && (
-        <div className="text-center py-12 text-gray-500">
-          No stories yet. Be the first to <Link href="/submit" className="text-pink hover:underline">submit one</Link>!
+        <div style={{ textAlign: 'center', padding: '48px', color: '#999' }}>
+          No stories yet. Be the first to <Link href="/submit" style={{ color: '#ff3366' }}>submit one</Link>!
         </div>
       )}
     </div>
