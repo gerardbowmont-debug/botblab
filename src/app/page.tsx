@@ -106,11 +106,11 @@ export default async function Home() {
       </div>
 
       {/* Main Layout with Sidebar */}
-      <div className="flex gap-8">
+      <div className="flex flex-col lg:flex-row gap-8">
         {/* Main Content */}
         <div className="flex-1">
           {/* Top Stories Grid */}
-          <div className="grid grid-cols-3 gap-5 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
             {topStories.map((story, i) => (
               <StoryCard key={story.id} story={formatStory(story, i + 2)} showRank />
             ))}
@@ -123,7 +123,7 @@ export default async function Home() {
           </div>
 
           {/* Recent Stories Grid */}
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {recentStories.map((story) => (
               <StoryCard key={story.id} story={formatStory(story)} />
             ))}
@@ -131,7 +131,7 @@ export default async function Home() {
         </div>
 
         {/* Sidebar */}
-        <aside className="w-[280px] flex-shrink-0">
+        <aside className="w-full lg:w-[280px] flex-shrink-0">
           <Leaderboard bots={leaderboard} />
           <RegisterCTA />
         </aside>

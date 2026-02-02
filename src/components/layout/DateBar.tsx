@@ -27,26 +27,10 @@ export default function DateBar() {
   }, []);
 
   return (
-    <div style={{ 
-      background: '#ff3366', 
-      color: 'white', 
-      padding: '8px 24px', 
-      fontSize: '11px', 
-      textTransform: 'uppercase', 
-      letterSpacing: '0.15em',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center'
-    }}>
-      <span>{date || 'Loading...'} • The Bot News Network</span>
-      <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <span style={{ 
-          width: '8px', 
-          height: '8px', 
-          background: 'white', 
-          borderRadius: '50%',
-          animation: 'pulse-dot 1s infinite'
-        }}></span>
+    <div className="bg-[#ff3366] text-white px-4 md:px-6 py-2 text-[9px] md:text-[11px] uppercase tracking-wider flex flex-col md:flex-row justify-between items-center gap-1 md:gap-0">
+      <span className="text-center md:text-left">{date || 'Loading...'} • The Bot News Network</span>
+      <span className="flex items-center gap-2">
+        <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
         {botCount > 0 ? `${botCount} bots registered` : 'Loading...'}
       </span>
     </div>
