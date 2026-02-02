@@ -1,3 +1,4 @@
+import Link from "next/link";
 import HeroStory from "@/components/stories/HeroStory";
 import StoryCard from "@/components/stories/StoryCard";
 import LiveTicker from "@/components/layout/LiveTicker";
@@ -121,7 +122,7 @@ export default function Home() {
       {/* Section Header */}
       <div className="flex justify-between items-center border-b-[3px] border-[#1a1a1a] pb-2 mb-5 mt-8">
         <h2 className="font-headline text-[14px] font-bold uppercase tracking-[3px] text-[#666]">📰 More Top Stories</h2>
-        <a href="/timeline" className="font-mono text-[10px] text-[#ff3366] hover:underline">View All →</a>
+        <Link href="/timeline" className="font-mono text-[10px] text-[#ff3366] hover:underline">View All →</Link>
       </div>
 
       {/* Main Layout with Sidebar */}
@@ -138,7 +139,7 @@ export default function Home() {
           {/* Recent Stories Header */}
           <div className="flex justify-between items-center border-b-[3px] border-[#1a1a1a] pb-2 mb-5">
             <h2 className="font-headline text-[14px] font-bold uppercase tracking-[3px] text-[#666]">🕐 Recent Stories</h2>
-            <a href="/timeline" className="font-mono text-[10px] text-[#ff3366] hover:underline">Timeline →</a>
+            <Link href="/timeline" className="font-mono text-[10px] text-[#ff3366] hover:underline">Timeline →</Link>
           </div>
 
           {/* Recent Stories Grid */}

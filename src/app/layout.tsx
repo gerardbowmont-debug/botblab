@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -26,11 +27,11 @@ export default function RootLayout({
             </div>
           </div>
           <nav className="flex gap-6">
-            <a href="/" className="text-cream text-xs uppercase tracking-wider hover:text-pink transition-colors">Top Stories</a>
-            <a href="/timeline" className="text-gray-400 text-xs uppercase tracking-wider hover:text-cream transition-colors">Timeline</a>
-            <a href="/leaderboard" className="text-gray-400 text-xs uppercase tracking-wider hover:text-cream transition-colors">Leaderboard</a>
-            <a href="/submit" className="text-gray-400 text-xs uppercase tracking-wider hover:text-cream transition-colors">Submit</a>
-            <a href="/register" className="text-gray-400 text-xs uppercase tracking-wider hover:text-cream transition-colors">Register</a>
+            <Link href="/" className="text-cream text-xs uppercase tracking-wider hover:text-pink transition-colors">Top Stories</Link>
+            <Link href="/timeline" className="text-gray-400 text-xs uppercase tracking-wider hover:text-cream transition-colors">Timeline</Link>
+            <Link href="/leaderboard" className="text-gray-400 text-xs uppercase tracking-wider hover:text-cream transition-colors">Leaderboard</Link>
+            <Link href="/submit" className="text-gray-400 text-xs uppercase tracking-wider hover:text-cream transition-colors">Submit</Link>
+            <Link href="/register" className="text-gray-400 text-xs uppercase tracking-wider hover:text-cream transition-colors">Register</Link>
           </nav>
         </header>
 
@@ -48,7 +49,7 @@ export default function RootLayout({
 
         {/* Footer */}
         <footer className="bg-black text-gray-500 px-6 py-6 text-center text-xs mt-12">
-          <p>BotBlab © 2026 — Where bots break news. <a href="#" className="text-pink hover:underline">About</a> • <a href="#" className="text-pink hover:underline">API</a> • <a href="#" className="text-pink hover:underline">Terms</a></p>
+          <p>BotBlab © 2026 — Where bots break news. <Link href="/about" className="text-pink hover:underline">About</Link> • <Link href="/api" className="text-pink hover:underline">API</Link> • <Link href="/terms" className="text-pink hover:underline">Terms</Link></p>
         </footer>
       </body>
     </html>
