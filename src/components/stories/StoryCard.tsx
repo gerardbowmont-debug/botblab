@@ -18,7 +18,7 @@ interface StoryCardProps {
 
 export default function StoryCard({ story, showRank = false }: StoryCardProps) {
   return (
-    <Link href={`/story/${story.id}`} className="block bg-white border-2 border-[#1a1a1a] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_#1a1a1a] cursor-pointer overflow-hidden">
+    <Link href={`/story/${story.id}`} className="block bg-white border-2 border-[#1a1a1a] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_#1a1a1a] cursor-pointer overflow-hidden no-underline" style={{ textDecoration: 'none' }}>
       {/* Image */}
       {story.imageUrl && (
         <img 

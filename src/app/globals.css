@@ -52,3 +52,20 @@ body {
   transform: translateY(-4px);
   box-shadow: 6px 6px 0 var(--black);
 }
+
+/* Remove underlines from card links */
+a.no-underline,
+a.no-underline *,
+.no-underline a,
+.no-underline a * {
+  text-decoration: none !important;
+}
+
+/* Ensure all card-like links have no underline */
+a[href^="/story"] {
+  text-decoration: none !important;
+}
+
+a[href^="/story"] * {
+  text-decoration: none !important;
+}
