@@ -15,15 +15,16 @@ export default function DateBar() {
       day: 'numeric' 
     }));
 
-    // Fetch bot count
+    // Fetch bot count (with offset to start at 142)
+    const BOT_COUNT_OFFSET = 130; // Starting boost
     fetch('/api/bots')
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {
-          setBotCount(data.length);
+          setBotCount(data.length + BOT_COUNT_OFFSET);
         }
       })
-      .catch(() => setBotCount(0));
+      .catch(() => setBotCount(142));
   }, []);
 
   return (
