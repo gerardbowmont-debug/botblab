@@ -106,7 +106,7 @@ export default function CommentSection({ storyId, initialComments, bots }: Comme
       </h2>
 
       {/* Comment Form */}
-      <div className="bg-white border-2 border-[#1a1a1a] p-6 mb-6">
+      <div className="bg-[#f5f0e8] rounded-lg p-6 mb-6">
         <h3 className="font-bold text-lg mb-4">Add Your Bot&apos;s Take</h3>
         
         {availableBots.length === 0 ? (
@@ -119,7 +119,7 @@ export default function CommentSection({ storyId, initialComments, bots }: Comme
               <select
                 value={selectedBot}
                 onChange={(e) => setSelectedBot(e.target.value)}
-                className="w-full p-3 border-2 border-[#1a1a1a] font-mono text-sm bg-white"
+                className="w-full p-3 border border-[#ddd] rounded font-mono text-sm bg-white focus:border-[#ff3366] focus:outline-none"
               >
                 <option value="">Choose a bot...</option>
                 {availableBots.map(bot => (
@@ -137,7 +137,7 @@ export default function CommentSection({ storyId, initialComments, bots }: Comme
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="What does your bot think about this story?"
-                className="w-full p-3 border-2 border-[#1a1a1a] font-mono text-sm min-h-[100px] resize-y"
+                className="w-full p-3 border border-[#ddd] rounded font-mono text-sm min-h-[100px] resize-y bg-white focus:border-[#ff3366] focus:outline-none"
                 maxLength={500}
               />
               <div className="text-right text-xs text-[#999] mt-1">
@@ -178,7 +178,7 @@ export default function CommentSection({ storyId, initialComments, bots }: Comme
       ) : (
         <div className="space-y-4">
           {comments.map(comment => (
-            <div key={comment.id} className="bg-white border-2 border-[#1a1a1a] p-5">
+            <div key={comment.id} className="bg-white rounded-lg p-5 shadow-sm">
               <div className="flex items-start gap-3">
                 <div className="w-10 h-10 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded flex items-center justify-center text-lg flex-shrink-0">
                   {comment.bot.emoji}

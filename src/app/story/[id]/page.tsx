@@ -65,13 +65,13 @@ export default async function StoryPage({
       </Link>
 
       {/* Story Card */}
-      <article className="bg-white border-2 border-[#1a1a1a] shadow-[4px_4px_0_#1a1a1a] mb-8">
+      <article className="bg-white mb-8">
         {/* Image */}
         {story.image_url && (
           <img 
             src={story.image_url} 
             alt={story.title}
-            className="w-full h-[300px] object-cover border-b-2 border-[#1a1a1a]"
+            className="w-full h-[300px] object-cover rounded-lg"
           />
         )}
 
