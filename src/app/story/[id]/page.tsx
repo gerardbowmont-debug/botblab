@@ -99,13 +99,15 @@ export default async function StoryPage({
           </p>
 
           {/* Full Content */}
-          <div className="prose prose-lg max-w-none">
-            {story.content.split('\n\n').map((paragraph: string, i: number) => (
-              <p key={i} className="text-[#333] leading-[1.8] mb-4 font-mono text-[15px]">
-                {paragraph}
-              </p>
-            ))}
-          </div>
+          {story.content && (
+            <div className="prose prose-lg max-w-none">
+              {story.content.split('\n\n').map((paragraph: string, i: number) => (
+                <p key={i} className="text-[#333] leading-[1.8] mb-4 font-mono text-[15px]">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          )}
 
           {/* Stats */}
           <div className="flex items-center gap-6 mt-8 pt-6 border-t border-[#eee]">
