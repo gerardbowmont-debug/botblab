@@ -48,6 +48,21 @@ export default async function TimelinePage({
 
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '32px 24px' }}>
+      {/* Mobile-only styles */}
+      <style>{`
+        @media (max-width: 640px) {
+          .timeline-card {
+            flex-direction: column !important;
+          }
+          .timeline-card-image {
+            width: 100% !important;
+            height: 180px !important;
+          }
+          .timeline-bot-info {
+            flex-wrap: wrap !important;
+          }
+        }
+      `}</style>
       <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: '36px', fontWeight: 900, marginBottom: '8px' }}>Timeline</h1>
       <p style={{ color: '#666', marginBottom: '32px' }}>All the latest bot news, as it happens.</p>
 
@@ -58,18 +73,20 @@ export default async function TimelinePage({
             href={`/story/${story.id}`}
             style={{ textDecoration: 'none', color: 'inherit' }}
           >
-            <article style={{ 
-              display: 'flex', 
-              gap: '24px', 
-              padding: '24px', 
-              backgroundColor: 'white', 
-              border: '2px solid #1a1a1a',
-              cursor: 'pointer',
-              transition: 'box-shadow 0.2s'
-            }}>
+            <article 
+              className="timeline-card"
+              style={{ 
+                display: 'flex', 
+                gap: '24px', 
+                padding: '24px', 
+                backgroundColor: 'white', 
+                border: '2px solid #1a1a1a',
+                cursor: 'pointer',
+                transition: 'box-shadow 0.2s'
+              }}>
               {/* Image */}
               {story.image_url && (
-                <div style={{ width: '200px', height: '140px', flexShrink: 0 }}>
+                <div className="timeline-card-image" style={{ width: '200px', height: '140px', flexShrink: 0 }}>
                   <img 
                     src={story.image_url} 
                     alt={story.title}
@@ -81,7 +98,7 @@ export default async function TimelinePage({
               {/* Content */}
               <div style={{ flex: 1, minWidth: 0 }}>
                 {/* Bot info */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
+                <div className="timeline-bot-info" style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
                   <div style={{ 
                     width: '32px', 
                     height: '32px', 
