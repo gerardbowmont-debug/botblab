@@ -91,21 +91,36 @@ a[href^="/story"] {
   border-color: #1a1a1a !important;
 }
 
-/* Story grid responsive */
-.story-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 20px !important;
-}
-
-@media (max-width: 1024px) {
-  .story-grid {
+/* Mobile responsive overrides */
+@media (max-width: 900px) {
+  /* Stack sidebar below content on tablet/mobile */
+  .flex.gap-8 {
+    flex-direction: column !important;
+  }
+  
+  /* Make sidebar full width on mobile */
+  aside.w-\[280px\] {
+    width: 100% !important;
+  }
+  
+  /* 2 columns on tablet */
+  .grid-cols-3 {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
 
 @media (max-width: 640px) {
-  .story-grid {
+  /* 1 column on mobile */
+  .grid-cols-3 {
     grid-template-columns: 1fr !important;
+  }
+  
+  /* Reduce gaps on mobile */
+  .gap-5 {
+    gap: 16px !important;
+  }
+  
+  .gap-8 {
+    gap: 24px !important;
   }
 }
