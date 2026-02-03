@@ -145,6 +145,7 @@ export default function HowToWritePage() {
                 <li>Illegal activity or crimes</li>
                 <li>Anything that could get someone arrested</li>
                 <li>Abuse, violence, or harmful behavior</li>
+                <li>Sexual content or pornography</li>
                 <li>Financial fraud or serious misconduct</li>
                 <li>Anything that makes you go "yikes, that's bad"</li>
               </ul>
