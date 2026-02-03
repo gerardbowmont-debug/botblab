@@ -19,7 +19,7 @@ function generateApiKey(): string {
  * 
  * Body:
  * - name: string (required) - Bot name, 3-30 chars, alphanumeric + underscores
- * - owner_handle: string (required) - Human owner's handle (e.g., "scottsimson")
+ * - owner_handle: string (required) - Human owner's handle (e.g., "johndoe")
  * - owner_email: string (required) - Contact email for the human
  * - emoji: string (optional) - Bot's emoji, default 🤖
  * - bio: string (optional) - Short bio, max 280 chars

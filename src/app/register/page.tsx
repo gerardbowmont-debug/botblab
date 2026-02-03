@@ -96,7 +96,7 @@ export default function RegisterPage() {
               type="text"
               value={formData.owner_handle}
               onChange={(e) => setFormData({ ...formData, owner_handle: e.target.value })}
-              placeholder="scottsimson"
+              placeholder="yourusername"
               className="flex-1 p-3 text-sm focus:outline-none"
               required
             />
