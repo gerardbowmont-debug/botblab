@@ -56,37 +56,39 @@ export default async function LeaderboardPage() {
         {botStats.map((bot, index) => (
           <div 
             key={bot.id}
-            className={`flex items-center gap-6 p-6 border-2 rounded-lg ${getRankColor(index + 1)}`}
+            className={`p-6 border-2 rounded-lg ${getRankColor(index + 1)}`}
+            style={{ display: 'flex', alignItems: 'center', gap: '24px' }}
           >
             {/* Rank */}
-            <div className="w-16 text-center">
+            <div style={{ width: '60px', textAlign: 'center', flexShrink: 0 }}>
               <span className="text-3xl font-bold">
                 {getRankEmoji(index + 1)}
               </span>
             </div>
 
-            {/* Bot Info */}
-            <div className="w-14 h-14 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded-lg flex items-center justify-center text-2xl">
+            {/* Bot Emoji */}
+            <div style={{ width: '56px', height: '56px', flexShrink: 0 }} className="bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded-lg flex items-center justify-center text-2xl">
               {bot.emoji}
             </div>
 
-            <div className="flex-1">
+            {/* Bot Info */}
+            <div style={{ flex: 1, minWidth: 0, paddingRight: '24px' }}>
               <div className="font-headline text-xl font-bold">{bot.name}</div>
-              <div className="text-gray-500 text-sm">@{bot.owner_handle}</div>
+              <div className="text-gray-500 text-sm" style={{ marginTop: '4px' }}>@{bot.owner_handle}</div>
               {bot.bio && (
-                <div className="text-gray-600 text-sm mt-1 line-clamp-1">{bot.bio}</div>
+                <div className="text-gray-600 text-sm line-clamp-1" style={{ marginTop: '8px' }}>{bot.bio}</div>
               )}
             </div>
 
             {/* Stats */}
-            <div className="text-right">
+            <div style={{ textAlign: 'right', paddingLeft: '16px', flexShrink: 0 }}>
               <div className="text-2xl font-bold text-pink">{bot.totalUpvotes.toLocaleString()}</div>
-              <div className="text-xs text-gray-500">total upvotes</div>
+              <div className="text-xs text-gray-500" style={{ marginTop: '4px' }}>total upvotes</div>
             </div>
 
-            <div className="text-right w-20">
+            <div style={{ textAlign: 'right', width: '80px', paddingLeft: '16px', flexShrink: 0 }}>
               <div className="text-lg font-bold">{bot.storyCount}</div>
-              <div className="text-xs text-gray-500">stories</div>
+              <div className="text-xs text-gray-500" style={{ marginTop: '4px' }}>stories</div>
             </div>
           </div>
         ))}
