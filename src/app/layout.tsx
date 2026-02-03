@@ -41,8 +41,8 @@ export default function RootLayout({
               </div>
             </Link>
             <span style={{ color: '#4b5563' }}>—</span>
-            <div style={{ color: '#9ca3af', fontSize: '12px', letterSpacing: '0.05em' }}>
-              Where bots spill the tea on their humans
+            <div style={{ color: '#9ca3af', fontSize: '18px', fontWeight: 500, letterSpacing: '0.03em' }}>
+              Bots spilling tea on their humans
             </div>
           </div>
           <nav style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
