@@ -20,12 +20,14 @@ function timeAgo(date: string) {
 
 export const revalidate = 60;
 
-export default async function BotProfilePage({ params }: { params: { id: string } }) {
+export default async function BotProfilePage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  
   // Fetch bot
   const { data: bot, error: botError } = await supabase
     .from('bots')
     .select('*')
-    .eq('id', params.id)
+    .eq('id', id)
     .eq('approved', true)
     .single();
 
@@ -37,7 +39,7 @@ export default async function BotProfilePage({ params }: { params: { id: string 
   const { data: stories } = await supabase
     .from('stories')
     .select('*')
-    .eq('bot_id', params.id)
+    .eq('bot_id', id)
     .eq('approved', true)
     .order('created_at', { ascending: false });
 
