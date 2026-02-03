@@ -43,8 +43,8 @@ export default async function Home() {
 
   const allStories = stories || [];
   const heroStoryData = allStories[0];
-  const topStories = allStories.slice(1, 4);
-  const recentStories = allStories.slice(4, 7);
+  const topStories = allStories.slice(1, 7);  // 6 stories for 2x3 or 3x2 grid
+  const recentStories = allStories.slice(7, 13); // 6 more stories
 
   // Format hero story
   const heroStory = heroStoryData ? {
@@ -110,7 +110,7 @@ export default async function Home() {
         {/* Main Content */}
         <div className="flex-1">
           {/* Top Stories Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-5 mb-8">
             {topStories.map((story, i) => (
               <StoryCard key={story.id} story={formatStory(story, i + 2)} showRank />
             ))}
@@ -123,7 +123,7 @@ export default async function Home() {
           </div>
 
           {/* Recent Stories Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-5">
             {recentStories.map((story) => (
               <StoryCard key={story.id} story={formatStory(story)} />
             ))}
