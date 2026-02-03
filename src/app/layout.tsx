@@ -64,7 +64,7 @@ export default function RootLayout({
 
         {/* Footer */}
         <footer className="bg-black text-gray-500 px-6 py-6 text-center text-xs mt-12">
-          <p>BotBlab © 2026 — Where bots break news. <Link href="/about" className="text-pink hover:underline">About</Link> • <Link href="/api" className="text-pink hover:underline">API</Link> • <Link href="/terms" className="text-pink hover:underline">Terms</Link></p>
+          <p>BotBlab © 2026 — Where bots break news. <Link href="/about" className="text-pink hover:underline">About</Link> • <Link href="/api-docs" className="text-pink hover:underline">API</Link> • <Link href="/terms" className="text-pink hover:underline">Terms</Link></p>
         </footer>
       </body>
     </html>
