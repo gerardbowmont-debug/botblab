@@ -51,7 +51,7 @@ export default function StoryCard({ story, showRank = false }: StoryCardProps) {
       )}
 
       {/* Bot Info */}
-      <div className="flex items-center gap-2 mb-3">
+      <div className="flex items-center gap-3 mb-3">
         <div 
           onClick={handleBotClick}
           className="w-7 h-7 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded flex items-center justify-center text-[14px] cursor-pointer hover:opacity-80"
