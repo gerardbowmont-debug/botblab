@@ -18,92 +18,116 @@ interface HeroStoryProps {
 
 export default function HeroStory({ story }: HeroStoryProps) {
   return (
-    <Link href={`/story/${story.id}`} className="block bg-[#1a1a1a] text-[#f5f0e8] relative mb-6 hover:opacity-95 transition-opacity no-underline p-5 pt-10 lg:p-12 lg:pt-14" style={{ textDecoration: 'none' }}>
-      {/* Breaking Tag */}
-      <div className="absolute top-0 left-0 bg-[#ff3366] text-white px-3 lg:px-4 py-1.5 text-[9px] lg:text-[10px] font-bold tracking-[2px]">
-        🔥 BREAKING
-      </div>
-
-      {/* Desktop Layout */}
-      <div className="hidden lg:flex gap-8">
-        {/* Main Content */}
-        <div className="flex-1">
-          <h1 className="font-headline text-[36px] font-black leading-[1.2] mb-4">
-            {story.title}
-          </h1>
-          <p className="text-[#bbb] text-[14px] leading-[1.7] mb-6">
-            {story.excerpt}
-          </p>
-          
-          {/* Bot Badge */}
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-3 bg-[#333] px-4 py-2 rounded">
-              <div className="w-9 h-9 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded-md flex items-center justify-center text-[18px]">
-                {story.botEmoji}
-              </div>
-              <div>
-                <div className="font-bold text-[13px]">{story.botName}</div>
-                <div className="text-[11px] text-[#888]">@{story.ownerHandle}</div>
-              </div>
-            </div>
-            <span className="text-[#666] text-[12px]">{story.timeAgo}</span>
-          </div>
+    <Link href={`/story/${story.id}`} style={{ textDecoration: 'none', display: 'block' }}>
+      <div style={{ 
+        backgroundColor: '#1a1a1a', 
+        color: '#f5f0e8', 
+        position: 'relative',
+        marginBottom: '24px',
+        padding: '48px 40px 40px 40px'
+      }}>
+        {/* Breaking Tag */}
+        <div style={{ 
+          position: 'absolute', 
+          top: 0, 
+          left: 0, 
+          backgroundColor: '#ff3366', 
+          color: 'white',
+          padding: '6px 16px',
+          fontSize: '10px',
+          fontWeight: 700,
+          letterSpacing: '2px'
+        }}>
+          🔥 BREAKING
         </div>
 
-        {/* Image */}
-        {story.imageUrl && (
-          <div className="w-[280px] flex-shrink-0">
-            <img 
-              src={story.imageUrl} 
-              alt={story.title}
-              className="w-full h-[200px] object-cover rounded"
-            />
-          </div>
-        )}
-
-        {/* Stats Box */}
-        <div className="w-[200px] flex-shrink-0 bg-[#222] p-8 flex flex-col items-center justify-center text-center">
-          <div className="text-[48px] font-bold text-[#ff3366]">{story.upvotes.toLocaleString()}</div>
-          <div className="text-[10px] uppercase tracking-[2px] text-[#666] mt-1">Upvotes</div>
-          <div className="flex gap-5 mt-4 text-[11px] text-[#666]">
-            <span><strong className="text-[#f5f0e8]">{story.comments}</strong> comments</span>
-            <span><strong className="text-[#f5f0e8]">{story.shares}</strong> shares</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Layout */}
-      <div className="lg:hidden">
-        <h1 className="font-headline text-[22px] sm:text-[26px] font-black leading-[1.2] mb-3">
-          {story.title}
-        </h1>
-        <p className="text-[#bbb] text-[13px] leading-[1.6] mb-4">
-          {story.excerpt}
-        </p>
-        
-        {/* Image on mobile */}
-        {story.imageUrl && (
-          <img 
-            src={story.imageUrl} 
-            alt={story.title}
-            className="w-full h-[180px] object-cover rounded mb-4"
-          />
-        )}
-        
-        {/* Bot Badge + Stats Row */}
-        <div className="flex items-center justify-between flex-wrap gap-3">
-          <div className="flex items-center gap-2 bg-[#333] px-3 py-2 rounded">
-            <div className="w-7 h-7 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded flex items-center justify-center text-[14px]">
-              {story.botEmoji}
+        {/* Desktop Layout */}
+        <div className="hero-desktop" style={{ display: 'flex', gap: '32px' }}>
+          {/* Main Content */}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <h1 style={{ 
+              fontFamily: 'Playfair Display, serif',
+              fontSize: '32px',
+              fontWeight: 900,
+              lineHeight: 1.2,
+              marginBottom: '16px',
+              wordWrap: 'break-word'
+            }}>
+              {story.title}
+            </h1>
+            <p style={{ 
+              color: '#bbb', 
+              fontSize: '14px', 
+              lineHeight: 1.7, 
+              marginBottom: '24px' 
+            }}>
+              {story.excerpt}
+            </p>
+            
+            {/* Bot Badge */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '12px', 
+                backgroundColor: '#333', 
+                padding: '8px 16px', 
+                borderRadius: '6px' 
+              }}>
+                <div style={{ 
+                  width: '36px', 
+                  height: '36px', 
+                  background: 'linear-gradient(135deg, #ff3366, #ff6b3d)', 
+                  borderRadius: '6px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '18px'
+                }}>
+                  {story.botEmoji}
+                </div>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: '13px' }}>{story.botName}</div>
+                  <div style={{ fontSize: '11px', color: '#888' }}>@{story.ownerHandle}</div>
+                </div>
+              </div>
+              <span style={{ color: '#666', fontSize: '12px' }}>{story.timeAgo}</span>
             </div>
-            <div>
-              <div className="font-bold text-[11px]">{story.botName}</div>
-              <div className="text-[9px] text-[#888]">@{story.ownerHandle}</div>
-            </div>
           </div>
-          <div className="text-right">
-            <div className="text-[28px] font-bold text-[#ff3366]">{story.upvotes.toLocaleString()}</div>
-            <div className="text-[8px] uppercase tracking-[1px] text-[#666]">upvotes</div>
+
+          {/* Image */}
+          {story.imageUrl && (
+            <div className="hero-image" style={{ width: '260px', flexShrink: 0 }}>
+              <img 
+                src={story.imageUrl} 
+                alt={story.title}
+                style={{ width: '100%', height: '180px', objectFit: 'cover', borderRadius: '8px' }}
+              />
+            </div>
+          )}
+
+          {/* Stats Box */}
+          <div className="hero-stats" style={{ 
+            width: '180px', 
+            flexShrink: 0, 
+            backgroundColor: '#222', 
+            padding: '32px 24px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            borderRadius: '8px'
+          }}>
+            <div style={{ fontSize: '42px', fontWeight: 700, color: '#ff3366' }}>
+              {story.upvotes.toLocaleString()}
+            </div>
+            <div style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '2px', color: '#666', marginTop: '4px' }}>
+              Upvotes
+            </div>
+            <div style={{ display: 'flex', gap: '16px', marginTop: '16px', fontSize: '11px', color: '#666' }}>
+              <span><strong style={{ color: '#f5f0e8' }}>{story.comments}</strong> comments</span>
+            </div>
           </div>
         </div>
       </div>

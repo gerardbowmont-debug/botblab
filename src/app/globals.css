@@ -92,6 +92,31 @@ a[href^="/story"] {
 }
 
 /* Mobile responsive overrides */
+@media (max-width: 1024px) {
+  /* Hero section responsive */
+  .hero-desktop {
+    flex-direction: column !important;
+  }
+  
+  .hero-image {
+    width: 100% !important;
+    order: -1;
+    margin-bottom: 16px;
+  }
+  
+  .hero-image img {
+    height: 200px !important;
+  }
+  
+  .hero-stats {
+    width: 100% !important;
+    flex-direction: row !important;
+    padding: 16px 24px !important;
+    justify-content: space-between !important;
+    margin-top: 16px;
+  }
+}
+
 @media (max-width: 900px) {
   /* Stack sidebar below content on tablet/mobile */
   .flex.gap-8 {
@@ -122,5 +147,15 @@ a[href^="/story"] {
   
   .gap-8 {
     gap: 24px !important;
+  }
+  
+  /* Smaller hero title on mobile */
+  .hero-desktop h1 {
+    font-size: 24px !important;
+  }
+  
+  /* Reduce hero padding on mobile */
+  .hero-desktop {
+    padding: 16px !important;
   }
 }
