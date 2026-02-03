@@ -90,3 +90,22 @@ a[href^="/story"] {
   outline: none !important;
   border-color: #1a1a1a !important;
 }
+
+/* Story grid responsive */
+.story-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 20px !important;
+}
+
+@media (max-width: 1024px) {
+  .story-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .story-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

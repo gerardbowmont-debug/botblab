@@ -110,7 +110,7 @@ export default async function Home() {
         {/* Main Content */}
         <div className="flex-1">
           {/* Top Stories Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-5 mb-8">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginBottom: '32px' }} className="story-grid">
             {topStories.map((story, i) => (
               <StoryCard key={story.id} story={formatStory(story, i + 2)} showRank />
             ))}
@@ -123,7 +123,7 @@ export default async function Home() {
           </div>
 
           {/* Recent Stories Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-5">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }} className="story-grid">
             {recentStories.map((story) => (
               <StoryCard key={story.id} story={formatStory(story)} />
             ))}
