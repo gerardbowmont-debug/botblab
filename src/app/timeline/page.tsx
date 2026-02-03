@@ -6,6 +6,8 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
+const STORIES_PER_PAGE = 20;
+
 function timeAgo(date: string) {
   const seconds = Math.floor((Date.now() - new Date(date).getTime()) / 1000);
   if (seconds < 60) return 'just now';
@@ -19,13 +21,30 @@ function timeAgo(date: string) {
 
 export const revalidate = 60;
 
-export default async function TimelinePage() {
+export default async function TimelinePage({ 
+  searchParams 
+}: { 
+  searchParams: Promise<{ page?: string }> 
+}) {
+  const params = await searchParams;
+  const currentPage = Math.max(1, parseInt(params.page || '1', 10));
+  const offset = (currentPage - 1) * STORIES_PER_PAGE;
+
+  // Get total count
+  const { count: totalCount } = await supabase
+    .from('stories')
+    .select('*', { count: 'exact', head: true })
+    .eq('approved', true);
+
+  // Get stories for current page
   const { data: stories } = await supabase
     .from('stories')
     .select(`*, bot:bots(*)`)
     .eq('approved', true)
     .order('created_at', { ascending: false })
-    .limit(50);
+    .range(offset, offset + STORIES_PER_PAGE - 1);
+
+  const totalPages = Math.ceil((totalCount || 0) / STORIES_PER_PAGE);
 
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '32px 24px' }}>
@@ -49,13 +68,15 @@ export default async function TimelinePage() {
               transition: 'box-shadow 0.2s'
             }}>
               {/* Image */}
-              <div style={{ width: '200px', height: '140px', flexShrink: 0 }}>
-                <img 
-                  src={story.image_url} 
-                  alt={story.title}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              </div>
+              {story.image_url && (
+                <div style={{ width: '200px', height: '140px', flexShrink: 0 }}>
+                  <img 
+                    src={story.image_url} 
+                    alt={story.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
+              )}
 
               {/* Content */}
               <div style={{ flex: 1, minWidth: 0 }}>
@@ -122,6 +143,114 @@ export default async function TimelinePage() {
       {(!stories || stories.length === 0) && (
         <div style={{ textAlign: 'center', padding: '48px', color: '#999' }}>
           No stories yet. Be the first to <Link href="/submit" style={{ color: '#ff3366' }}>submit one</Link>!
+        </div>
+      )}
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          gap: '8px', 
+          marginTop: '48px',
+          paddingTop: '24px',
+          borderTop: '2px solid #eee'
+        }}>
+          {/* Previous */}
+          {currentPage > 1 ? (
+            <Link 
+              href={`/timeline?page=${currentPage - 1}`}
+              style={{ 
+                padding: '8px 16px', 
+                border: '2px solid #1a1a1a', 
+                textDecoration: 'none', 
+                color: '#1a1a1a',
+                fontWeight: 700,
+                fontSize: '14px'
+              }}
+            >
+              ← Prev
+            </Link>
+          ) : (
+            <span style={{ 
+              padding: '8px 16px', 
+              border: '2px solid #ddd', 
+              color: '#ddd',
+              fontWeight: 700,
+              fontSize: '14px'
+            }}>
+              ← Prev
+            </span>
+          )}
+
+          {/* Page numbers */}
+          <div style={{ display: 'flex', gap: '4px' }}>
+            {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
+              let pageNum;
+              if (totalPages <= 5) {
+                pageNum = i + 1;
+              } else if (currentPage <= 3) {
+                pageNum = i + 1;
+              } else if (currentPage >= totalPages - 2) {
+                pageNum = totalPages - 4 + i;
+              } else {
+                pageNum = currentPage - 2 + i;
+              }
+              
+              return (
+                <Link
+                  key={pageNum}
+                  href={`/timeline?page=${pageNum}`}
+                  style={{
+                    padding: '8px 12px',
+                    border: '2px solid #1a1a1a',
+                    backgroundColor: pageNum === currentPage ? '#1a1a1a' : 'white',
+                    color: pageNum === currentPage ? 'white' : '#1a1a1a',
+                    textDecoration: 'none',
+                    fontWeight: 700,
+                    fontSize: '14px'
+                  }}
+                >
+                  {pageNum}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Next */}
+          {currentPage < totalPages ? (
+            <Link 
+              href={`/timeline?page=${currentPage + 1}`}
+              style={{ 
+                padding: '8px 16px', 
+                border: '2px solid #1a1a1a', 
+                textDecoration: 'none', 
+                color: '#1a1a1a',
+                fontWeight: 700,
+                fontSize: '14px'
+              }}
+            >
+              Next →
+            </Link>
+          ) : (
+            <span style={{ 
+              padding: '8px 16px', 
+              border: '2px solid #ddd', 
+              color: '#ddd',
+              fontWeight: 700,
+              fontSize: '14px'
+            }}>
+              Next →
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* Page info */}
+      {totalPages > 1 && (
+        <div style={{ textAlign: 'center', marginTop: '16px', color: '#999', fontSize: '13px' }}>
+          Page {currentPage} of {totalPages} • {totalCount} stories
         </div>
       )}
     </div>
