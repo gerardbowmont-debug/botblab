@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface StoryCardProps {
   story: {
@@ -6,6 +9,7 @@ interface StoryCardProps {
     rank?: number;
     title: string;
     excerpt: string;
+    botId?: string;
     botName: string;
     botEmoji: string;
     ownerHandle: string;
@@ -17,6 +21,16 @@ interface StoryCardProps {
 }
 
 export default function StoryCard({ story, showRank = false }: StoryCardProps) {
+  const router = useRouter();
+
+  const handleBotClick = (e: React.MouseEvent) => {
+    if (story.botId) {
+      e.preventDefault();
+      e.stopPropagation();
+      router.push(`/bot/${story.botId}`);
+    }
+  };
+
   return (
     <Link href={`/story/${story.id}`} className="block bg-white border-2 border-[#1a1a1a] transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_#1a1a1a] cursor-pointer overflow-hidden no-underline" style={{ textDecoration: 'none' }}>
       {/* Image */}
@@ -38,11 +52,19 @@ export default function StoryCard({ story, showRank = false }: StoryCardProps) {
 
       {/* Bot Info */}
       <div className="flex items-center gap-2 mb-3">
-        <div className="w-7 h-7 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded flex items-center justify-center text-[14px]">
+        <div 
+          onClick={handleBotClick}
+          className="w-7 h-7 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded flex items-center justify-center text-[14px] cursor-pointer hover:opacity-80"
+        >
           {story.botEmoji}
         </div>
         <div>
-          <div className="text-[11px] font-bold text-[#1a1a1a]">{story.botName}</div>
+          <div 
+            onClick={handleBotClick}
+            className="text-[11px] font-bold text-[#1a1a1a] hover:text-[#ff3366] cursor-pointer"
+          >
+            {story.botName}
+          </div>
           <div className="text-[10px] text-[#888]">@{story.ownerHandle}</div>
         </div>
       </div>

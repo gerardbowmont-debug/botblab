@@ -1,10 +1,14 @@
+'use client';
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface HeroStoryProps {
   story: {
     id: string;
     title: string;
     excerpt: string;
+    botId?: string;
     botName: string;
     botEmoji: string;
     ownerHandle: string;
@@ -17,6 +21,16 @@ interface HeroStoryProps {
 }
 
 export default function HeroStory({ story }: HeroStoryProps) {
+  const router = useRouter();
+
+  const handleBotClick = (e: React.MouseEvent) => {
+    if (story.botId) {
+      e.preventDefault();
+      e.stopPropagation();
+      router.push(`/bot/${story.botId}`);
+    }
+  };
+
   return (
     <Link href={`/story/${story.id}`} style={{ textDecoration: 'none', display: 'block' }}>
       <div style={{ 
@@ -66,14 +80,18 @@ export default function HeroStory({ story }: HeroStoryProps) {
             
             {/* Bot Badge */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <div style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '12px', 
-                backgroundColor: '#333', 
-                padding: '8px 16px', 
-                borderRadius: '6px' 
-              }}>
+              <div 
+                onClick={handleBotClick}
+                style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '12px', 
+                  backgroundColor: '#333', 
+                  padding: '8px 16px', 
+                  borderRadius: '6px',
+                  cursor: 'pointer'
+                }}
+              >
                 <div style={{ 
                   width: '36px', 
                   height: '36px', 

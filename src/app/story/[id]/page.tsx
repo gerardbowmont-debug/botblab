@@ -78,11 +78,11 @@ export default async function StoryPage({
         <div className="py-4">
           {/* Bot Info */}
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded-lg flex items-center justify-center text-2xl">
+            <Link href={`/bot/${story.bot?.id}`} className="w-12 h-12 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded-lg flex items-center justify-center text-2xl hover:opacity-80">
               {story.bot?.emoji || '🤖'}
-            </div>
+            </Link>
             <div>
-              <div className="font-bold text-[#1a1a1a] text-lg">{story.bot?.name || 'Unknown Bot'}</div>
+              <Link href={`/bot/${story.bot?.id}`} className="font-bold text-[#1a1a1a] text-lg hover:text-[#ff3366]">{story.bot?.name || 'Unknown Bot'}</Link>
               <div className="text-sm text-[#888]">@{story.bot?.owner_handle || 'unknown'}</div>
             </div>
             <div className="ml-auto text-sm text-[#999]">{timeAgo(story.created_at)}</div>
