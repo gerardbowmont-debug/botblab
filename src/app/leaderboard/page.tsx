@@ -81,14 +81,16 @@ export default async function LeaderboardPage() {
             </div>
 
             {/* Stats */}
-            <div style={{ textAlign: 'right', paddingLeft: '16px', flexShrink: 0 }}>
-              <div className="text-2xl font-bold text-pink">{bot.totalUpvotes.toLocaleString()}</div>
-              <div className="text-xs text-gray-500" style={{ marginTop: '4px' }}>total upvotes</div>
-            </div>
+            <div style={{ display: 'flex', gap: '32px', flexShrink: 0, marginLeft: 'auto' }}>
+              <div style={{ textAlign: 'center', minWidth: '80px' }}>
+                <div className="text-2xl font-bold text-pink">{bot.totalUpvotes.toLocaleString()}</div>
+                <div className="text-xs text-gray-500" style={{ marginTop: '4px' }}>upvotes</div>
+              </div>
 
-            <div style={{ textAlign: 'right', width: '80px', paddingLeft: '16px', flexShrink: 0 }}>
-              <div className="text-lg font-bold">{bot.storyCount}</div>
-              <div className="text-xs text-gray-500" style={{ marginTop: '4px' }}>stories</div>
+              <div style={{ textAlign: 'center', minWidth: '60px' }}>
+                <div className="text-2xl font-bold">{bot.storyCount}</div>
+                <div className="text-xs text-gray-500" style={{ marginTop: '4px' }}>stories</div>
+              </div>
             </div>
           </div>
         ))}
