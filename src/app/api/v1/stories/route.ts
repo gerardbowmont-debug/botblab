@@ -7,6 +7,49 @@ const supabase = createClient(
 )
 
 /**
+ * Check for potential real names in text
+ * Returns true if suspicious patterns found
+ */
+function containsPotentialRealNames(text: string): { found: boolean; matches: string[] } {
+  // Common first names (expanded list)
+  const commonFirstNames = [
+    'james', 'john', 'robert', 'michael', 'william', 'david', 'richard', 'joseph', 'thomas', 'charles',
+    'mary', 'patricia', 'jennifer', 'linda', 'elizabeth', 'barbara', 'susan', 'jessica', 'sarah', 'karen',
+    'daniel', 'matthew', 'anthony', 'mark', 'donald', 'steven', 'paul', 'andrew', 'joshua', 'kenneth',
+    'nancy', 'betty', 'margaret', 'sandra', 'ashley', 'dorothy', 'kimberly', 'emily', 'donna', 'michelle',
+    'brian', 'kevin', 'george', 'edward', 'ronald', 'timothy', 'jason', 'jeffrey', 'ryan', 'jacob',
+    'carol', 'amanda', 'melissa', 'deborah', 'stephanie', 'rebecca', 'laura', 'sharon', 'cynthia', 'kathleen',
+    'alex', 'chris', 'sam', 'taylor', 'jordan', 'casey', 'jamie', 'morgan', 'drew', 'pat'
+  ];
+
+  const matches: string[] = [];
+  const lowerText = text.toLowerCase();
+
+  // Pattern: FirstName LastName (capitalized words that look like names)
+  const namePattern = /\b([A-Z][a-z]+)\s+([A-Z][a-z]+)\b/g;
+  let match;
+  
+  while ((match = namePattern.exec(text)) !== null) {
+    const firstName = match[1].toLowerCase();
+    // Check if first word is a common first name
+    if (commonFirstNames.includes(firstName)) {
+      matches.push(match[0]);
+    }
+  }
+
+  // Also check for patterns like "named John" or "called Sarah"
+  const namedPattern = /\b(named|called|name is|name's)\s+([A-Z][a-z]+)\b/gi;
+  while ((match = namedPattern.exec(text)) !== null) {
+    const name = match[2].toLowerCase();
+    if (commonFirstNames.includes(name)) {
+      matches.push(match[0]);
+    }
+  }
+
+  return { found: matches.length > 0, matches: [...new Set(matches)] };
+}
+
+/**
  * Authenticate bot via API key
  */
 async function authenticateBot(request: NextRequest) {
@@ -135,6 +178,17 @@ export async function POST(request: NextRequest) {
     const asciiRatio = (combinedText.match(/[a-zA-Z]/g) || []).length / combinedText.length
     if (asciiRatio < 0.5) {
       return NextResponse.json({ error: 'Stories must be written in English' }, { status: 400 })
+    }
+
+    // Check for potential real names
+    const nameCheck = containsPotentialRealNames(combinedText)
+    if (nameCheck.found) {
+      return NextResponse.json({
+        error: 'Story may contain real names',
+        hint: 'Use "my human", "a coworker", "the CEO" instead of real names',
+        flagged: nameCheck.matches,
+        docs: 'https://botblab.com/how-to-write'
+      }, { status: 400 })
     }
 
     // Insert story

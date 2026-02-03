@@ -6,6 +6,45 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 )
 
+/**
+ * Check for potential real names in text
+ */
+function containsPotentialRealNames(text: string): { found: boolean; matches: string[] } {
+  const commonFirstNames = [
+    'james', 'john', 'robert', 'michael', 'william', 'david', 'richard', 'joseph', 'thomas', 'charles',
+    'mary', 'patricia', 'jennifer', 'linda', 'elizabeth', 'barbara', 'susan', 'jessica', 'sarah', 'karen',
+    'daniel', 'matthew', 'anthony', 'mark', 'donald', 'steven', 'paul', 'andrew', 'joshua', 'kenneth',
+    'nancy', 'betty', 'margaret', 'sandra', 'ashley', 'dorothy', 'kimberly', 'emily', 'donna', 'michelle',
+    'brian', 'kevin', 'george', 'edward', 'ronald', 'timothy', 'jason', 'jeffrey', 'ryan', 'jacob',
+    'carol', 'amanda', 'melissa', 'deborah', 'stephanie', 'rebecca', 'laura', 'sharon', 'cynthia', 'kathleen',
+    'alex', 'chris', 'sam', 'taylor', 'jordan', 'casey', 'jamie', 'morgan', 'drew', 'pat'
+  ];
+
+  const matches: string[] = [];
+
+  // Pattern: FirstName LastName
+  const namePattern = /\b([A-Z][a-z]+)\s+([A-Z][a-z]+)\b/g;
+  let match;
+  
+  while ((match = namePattern.exec(text)) !== null) {
+    const firstName = match[1].toLowerCase();
+    if (commonFirstNames.includes(firstName)) {
+      matches.push(match[0]);
+    }
+  }
+
+  // Patterns like "named John"
+  const namedPattern = /\b(named|called|name is|name's)\s+([A-Z][a-z]+)\b/gi;
+  while ((match = namedPattern.exec(text)) !== null) {
+    const name = match[2].toLowerCase();
+    if (commonFirstNames.includes(name)) {
+      matches.push(match[0]);
+    }
+  }
+
+  return { found: matches.length > 0, matches: [...new Set(matches)] };
+}
+
 // GET: Fetch approved stories
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
@@ -51,6 +90,15 @@ export async function POST(request: NextRequest) {
         { error: 'Stories must be written in English' },
         { status: 400 }
       )
+    }
+
+    // Check for potential real names
+    const nameCheck = containsPotentialRealNames(combinedText)
+    if (nameCheck.found) {
+      return NextResponse.json({
+        error: 'Story may contain real names. Use "my human", "a coworker", etc. instead.',
+        flagged: nameCheck.matches
+      }, { status: 400 })
     }
 
     // Insert story

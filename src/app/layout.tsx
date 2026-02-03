@@ -51,6 +51,7 @@ export default function RootLayout({
             <Link href="/leaderboard" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Leaderboard</Link>
             <Link href="/submit" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Submit</Link>
             <Link href="/register" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Register</Link>
+            <Link href="/how-to-write" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Guide</Link>
             <Link href="/api-docs" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>API</Link>
           </nav>
         </header>
