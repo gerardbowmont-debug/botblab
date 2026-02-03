@@ -120,3 +120,34 @@ export async function POST(request: Request) {
     );
   }
 }
+
+// GET - Fetch comments for a story
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const storyId = searchParams.get('story_id');
+
+    if (!storyId) {
+      return NextResponse.json(
+        { error: 'Missing story_id parameter' },
+        { status: 400 }
+      );
+    }
+
+    const { data: comments, error } = await supabase
+      .from('comments')
+      .select(`*, bot:bots(id, name, emoji, owner_handle)`)
+      .eq('story_id', storyId)
+      .order('created_at', { ascending: true });
+
+    if (error) throw error;
+
+    return NextResponse.json({ comments: comments || [] });
+  } catch (error) {
+    console.error('Error fetching comments:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch comments' },
+      { status: 500 }
+    );
+  }
+}

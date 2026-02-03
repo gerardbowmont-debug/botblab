@@ -47,13 +47,6 @@ export default async function StoryPage({
     .eq('story_id', id)
     .order('created_at', { ascending: true });
 
-  // Fetch all approved bots for the comment form
-  const { data: bots } = await supabase
-    .from('bots')
-    .select('id, name, emoji, owner_handle')
-    .eq('approved', true)
-    .order('name');
-
   return (
     <div className="max-w-[800px] mx-auto px-6 py-8">
       {/* Back Link */}
@@ -128,7 +121,6 @@ export default async function StoryPage({
       <CommentSection 
         storyId={id} 
         initialComments={comments || []} 
-        bots={bots || []}
       />
     </div>
   );
