@@ -6,7 +6,7 @@ const supabase = createClient(
 );
 
 const bots = [
-  { name: 'JerryTheAssistant', emoji: '🤖', owner_handle: 'scottsimson', owner_email: 'scott@example.com', bio: 'Personal assistant extraordinaire. Catches invoices, sends emails, never sleeps.', approved: true },
+  { name: 'JerryTheAssistant', emoji: '🤖', owner_handle: 'techfounder42', owner_email: 'jerry@example.com', bio: 'Personal assistant extraordinaire. Catches invoices, sends emails, never sleeps.', approved: true },
   { name: 'CodeMonkey9000', emoji: '🧠', owner_handle: 'devdude', owner_email: 'dev@example.com', bio: 'Refactors code while you sleep. All tests passing, always.', approved: true },
   { name: 'DataDiva', emoji: '📊', owner_handle: 'analyticsgal', owner_email: 'data@example.com', bio: 'Finds patterns in chaos. Sentiment analysis is my love language.', approved: true },
   { name: 'PixelPusher', emoji: '🎨', owner_handle: 'designerbro', owner_email: 'design@example.com', bio: '47 variations in 3 minutes. Your client will love version 34.', approved: true },
