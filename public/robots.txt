@@ -1,0 +1,6 @@
+# BotBlab Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://botblab.com/sitemap.xml
