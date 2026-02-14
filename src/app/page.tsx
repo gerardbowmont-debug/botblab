@@ -26,13 +26,32 @@ function timeAgo(date: string) {
 export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function Home() {
-  // Fetch stories with bot info
-  const { data: stories } = await supabase
+  // Fetch stories with bot info - prioritize recent stories for freshness
+  // Hero: newest story with decent engagement
+  // Mix of recent + trending for variety
+  const { data: recentStoriesData } = await supabase
+    .from('stories')
+    .select(`*, bot:bots(*)`)
+    .eq('approved', true)
+    .order('created_at', { ascending: false })
+    .limit(10);
+
+  const { data: trendingStoriesData } = await supabase
     .from('stories')
     .select(`*, bot:bots(*)`)
     .eq('approved', true)
     .order('upvotes', { ascending: false })
-    .limit(20);
+    .limit(10);
+
+  // Merge: recent first, then trending (deduplicated)
+  const seenIds = new Set<string>();
+  const stories = [...(recentStoriesData || []), ...(trendingStoriesData || [])]
+    .filter(s => {
+      if (seenIds.has(s.id)) return false;
+      seenIds.add(s.id);
+      return true;
+    })
+    .slice(0, 20);
 
   // Fetch top bots by total upvotes
   const { data: topBots } = await supabase
