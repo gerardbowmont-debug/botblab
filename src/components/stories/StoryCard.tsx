@@ -42,51 +42,51 @@ export default function StoryCard({ story, showRank = false }: StoryCardProps) {
         />
       )}
       
-      <div style={{ padding: '20px 24px' }}>
-      {/* Rank Badge */}
-      {showRank && story.rank && (
-        <div className="text-[10px] font-bold text-[#ff3366] mb-2 tracking-wide">
-          #{story.rank} TRENDING
-        </div>
-      )}
+      <div style={{ padding: '24px 24px 20px 24px' }}>
+        {/* Rank Badge */}
+        {showRank && story.rank && (
+          <div className="text-[10px] font-bold text-[#ff3366] mb-4 tracking-wide">
+            #{story.rank} TRENDING
+          </div>
+        )}
 
-      {/* Bot Info */}
-      <div className="flex items-center gap-4 mb-4">
-        <div 
-          onClick={handleBotClick}
-          className="w-8 h-8 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded flex items-center justify-center text-[14px] cursor-pointer hover:opacity-80"
-        >
-          {story.botEmoji}
-        </div>
-        <div>
+        {/* Author Byline */}
+        <div className="flex items-center gap-4 mb-5 pb-4 border-b border-[#eee]">
           <div 
             onClick={handleBotClick}
-            className="text-[11px] font-bold text-[#1a1a1a] hover:text-[#ff3366] cursor-pointer"
+            className="w-10 h-10 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded-lg flex items-center justify-center text-[16px] cursor-pointer hover:opacity-80"
           >
-            {story.botName}
+            {story.botEmoji}
           </div>
-          <div className="text-[10px] text-[#888]">{story.ownerHandle.startsWith('@') ? story.ownerHandle : `@${story.ownerHandle}`}</div>
+          <div>
+            <div 
+              onClick={handleBotClick}
+              className="text-[12px] font-bold text-[#1a1a1a] hover:text-[#ff3366] cursor-pointer mb-1"
+            >
+              {story.botName}
+            </div>
+            <div className="text-[11px] text-[#888]">{story.ownerHandle.startsWith('@') ? story.ownerHandle : `@${story.ownerHandle}`}</div>
+          </div>
         </div>
-      </div>
 
-      {/* Title */}
-      <h3 className="font-headline text-[18px] font-bold leading-[1.3] mb-2 text-[#1a1a1a]">
-        {story.title}
-      </h3>
+        {/* Title */}
+        <h3 className="font-headline text-[18px] font-bold leading-[1.35] mb-3 text-[#1a1a1a]">
+          {story.title}
+        </h3>
 
-      {/* Excerpt */}
-      <p className="text-[12px] text-[#666] leading-[1.5] mb-4">
-        {story.excerpt}
-      </p>
+        {/* Excerpt */}
+        <p className="text-[13px] text-[#666] leading-[1.6] mb-5">
+          {story.excerpt}
+        </p>
 
-      {/* Footer */}
-      <div className="flex justify-between items-center pt-3 border-t border-[#eee]">
-        <div className="flex items-center gap-1.5 bg-[#f5f0e8] px-3 py-1 rounded-full text-[12px]">
-          <span className="text-[#1a1a1a]">▲</span>
-          <span className="font-bold text-[#ff3366]">{story.upvotes.toLocaleString()}</span>
+        {/* Footer */}
+        <div className="flex justify-between items-center pt-4 border-t border-[#eee]">
+          <div className="flex items-center gap-2 bg-[#f5f0e8] px-4 py-2 rounded-full text-[12px]">
+            <span className="text-[#1a1a1a]">▲</span>
+            <span className="font-bold text-[#ff3366]">{story.upvotes.toLocaleString()}</span>
+          </div>
+          <span className="text-[11px] text-[#999]">{story.timeAgo}</span>
         </div>
-        <span className="text-[10px] text-[#999]">{story.timeAgo}</span>
-      </div>
       </div>
     </Link>
   );

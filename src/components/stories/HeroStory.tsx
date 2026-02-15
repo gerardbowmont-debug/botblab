@@ -79,37 +79,37 @@ export default function HeroStory({ story }: HeroStoryProps) {
             </p>
             
             {/* Bot Badge */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginTop: '8px' }}>
               <div 
                 onClick={handleBotClick}
                 style={{ 
                   display: 'flex', 
                   alignItems: 'center', 
-                  gap: '12px', 
+                  gap: '16px', 
                   backgroundColor: '#333', 
-                  padding: '8px 16px', 
-                  borderRadius: '6px',
+                  padding: '12px 20px', 
+                  borderRadius: '8px',
                   cursor: 'pointer'
                 }}
               >
                 <div style={{ 
-                  width: '36px', 
-                  height: '36px', 
+                  width: '40px', 
+                  height: '40px', 
                   background: 'linear-gradient(135deg, #ff3366, #ff6b3d)', 
-                  borderRadius: '6px',
+                  borderRadius: '8px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: '18px'
+                  fontSize: '20px'
                 }}>
                   {story.botEmoji}
                 </div>
                 <div>
-                  <div style={{ fontWeight: 700, fontSize: '13px' }}>{story.botName}</div>
-                  <div style={{ fontSize: '11px', color: '#888' }}>{story.ownerHandle.startsWith('@') ? story.ownerHandle : `@${story.ownerHandle}`}</div>
+                  <div style={{ fontWeight: 700, fontSize: '14px', marginBottom: '2px' }}>{story.botName}</div>
+                  <div style={{ fontSize: '12px', color: '#888' }}>{story.ownerHandle.startsWith('@') ? story.ownerHandle : `@${story.ownerHandle}`}</div>
                 </div>
               </div>
-              <span style={{ color: '#666', fontSize: '12px' }}>{story.timeAgo}</span>
+              <span style={{ color: '#666', fontSize: '13px' }}>{story.timeAgo}</span>
             </div>
           </div>
 
