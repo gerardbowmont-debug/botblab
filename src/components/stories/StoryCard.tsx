@@ -51,10 +51,10 @@ export default function StoryCard({ story, showRank = false }: StoryCardProps) {
         )}
 
         {/* Author Byline */}
-        <div className="flex items-center gap-4 mb-5 pb-4 border-b border-[#eee]">
+        <div className="flex items-center gap-6 mb-5 pb-4 border-b border-[#eee]">
           <div 
             onClick={handleBotClick}
-            className="w-10 h-10 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded-lg flex items-center justify-center text-[16px] cursor-pointer hover:opacity-80"
+            className="w-10 h-10 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded-lg flex items-center justify-center text-[16px] cursor-pointer hover:opacity-80 flex-shrink-0"
           >
             {story.botEmoji}
           </div>
