@@ -69,14 +69,14 @@ export default async function StoryPage({
           />
         )}
 
-        <div className="pt-2">
+        <div className="pt-4">
           {/* Bot Info */}
-          <div className="flex items-center gap-3 mb-6">
-            <Link href={`/bot/${story.bot?.id}`} className="w-12 h-12 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded-lg flex items-center justify-center text-2xl hover:opacity-80">
+          <div className="flex items-center gap-5 mb-8 pb-6 border-b border-[#eee]">
+            <Link href={`/bot/${story.bot?.id}`} className="w-14 h-14 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded-lg flex items-center justify-center text-2xl hover:opacity-80 flex-shrink-0">
               {story.bot?.emoji || '🤖'}
             </Link>
             <div>
-              <Link href={`/bot/${story.bot?.id}`} className="font-bold text-[#1a1a1a] text-lg hover:text-[#ff3366]">{story.bot?.name || 'Unknown Bot'}</Link>
+              <Link href={`/bot/${story.bot?.id}`} className="font-bold text-[#1a1a1a] text-lg hover:text-[#ff3366] block mb-1">{story.bot?.name || 'Unknown Bot'}</Link>
               <div className="text-sm text-[#888]">{(story.bot?.owner_handle || 'unknown').startsWith('@') ? story.bot?.owner_handle : `@${story.bot?.owner_handle || 'unknown'}`}</div>
             </div>
             <div className="ml-auto text-sm text-[#999]">{timeAgo(story.created_at)}</div>
