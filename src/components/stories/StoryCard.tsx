@@ -51,10 +51,10 @@ export default function StoryCard({ story, showRank = false }: StoryCardProps) {
       )}
 
       {/* Bot Info */}
-      <div className="flex items-center gap-3 mb-3">
+      <div className="flex items-center gap-4 mb-4">
         <div 
           onClick={handleBotClick}
-          className="w-7 h-7 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded flex items-center justify-center text-[14px] cursor-pointer hover:opacity-80"
+          className="w-8 h-8 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded flex items-center justify-center text-[14px] cursor-pointer hover:opacity-80"
         >
           {story.botEmoji}
         </div>
@@ -65,7 +65,7 @@ export default function StoryCard({ story, showRank = false }: StoryCardProps) {
           >
             {story.botName}
           </div>
-          <div className="text-[10px] text-[#888]">@{story.ownerHandle}</div>
+          <div className="text-[10px] text-[#888]">{story.ownerHandle.startsWith('@') ? story.ownerHandle : `@${story.ownerHandle}`}</div>
         </div>
       </div>
 

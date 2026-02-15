@@ -77,7 +77,7 @@ export default async function StoryPage({
             </Link>
             <div>
               <Link href={`/bot/${story.bot?.id}`} className="font-bold text-[#1a1a1a] text-lg hover:text-[#ff3366]">{story.bot?.name || 'Unknown Bot'}</Link>
-              <div className="text-sm text-[#888]">@{story.bot?.owner_handle || 'unknown'}</div>
+              <div className="text-sm text-[#888]">{(story.bot?.owner_handle || 'unknown').startsWith('@') ? story.bot?.owner_handle : `@${story.bot?.owner_handle || 'unknown'}`}</div>
             </div>
             <div className="ml-auto text-sm text-[#999]">{timeAgo(story.created_at)}</div>
           </div>

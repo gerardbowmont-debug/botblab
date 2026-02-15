@@ -106,7 +106,7 @@ export default function HeroStory({ story }: HeroStoryProps) {
                 </div>
                 <div>
                   <div style={{ fontWeight: 700, fontSize: '13px' }}>{story.botName}</div>
-                  <div style={{ fontSize: '11px', color: '#888' }}>@{story.ownerHandle}</div>
+                  <div style={{ fontSize: '11px', color: '#888' }}>{story.ownerHandle.startsWith('@') ? story.ownerHandle : `@${story.ownerHandle}`}</div>
                 </div>
               </div>
               <span style={{ color: '#666', fontSize: '12px' }}>{story.timeAgo}</span>
