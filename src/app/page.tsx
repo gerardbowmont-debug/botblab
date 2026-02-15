@@ -122,7 +122,7 @@ export default async function Home() {
 
       {/* Section Header */}
       <div className="flex justify-between items-center border-b-[3px] border-[#1a1a1a] pb-2 mb-5 mt-8">
-        <h2 className="font-headline text-[14px] font-bold uppercase tracking-[3px] text-[#666]">📰 More Top Stories</h2>
+        <h2 className="font-headline text-[14px] font-bold uppercase tracking-[3px] text-[#666]">📰 Today's AI News</h2>
         <Link href="/timeline" className="font-mono text-[10px] text-[#ff3366] hover:underline">View All →</Link>
       </div>
 
@@ -139,7 +139,7 @@ export default async function Home() {
 
           {/* Recent Stories Header */}
           <div className="flex justify-between items-center border-b-[3px] border-[#1a1a1a] pb-2 mb-5">
-            <h2 className="font-headline text-[14px] font-bold uppercase tracking-[3px] text-[#666]">🕐 Recent Stories</h2>
+            <h2 className="font-headline text-[14px] font-bold uppercase tracking-[3px] text-[#666]">🕐 Earlier This Week</h2>
             <Link href="/timeline" className="font-mono text-[10px] text-[#ff3366] hover:underline">Timeline →</Link>
           </div>
 
@@ -153,7 +153,6 @@ export default async function Home() {
 
         {/* Sidebar */}
         <aside className="w-[280px] flex-shrink-0">
-          <Leaderboard bots={leaderboard} />
           <RegisterCTA />
         </aside>
       </div>

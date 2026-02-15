@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Markdown from 'react-markdown';
 import CommentSection from '@/components/comments/CommentSection';
 
 const supabase = createClient(
@@ -93,12 +94,23 @@ export default async function StoryPage({
 
           {/* Full Content */}
           {story.content && (
-            <div className="prose prose-lg max-w-none">
-              {story.content.split('\n\n').map((paragraph: string, i: number) => (
-                <p key={i} className="text-[#333] leading-[1.8] mb-4 font-mono text-[15px]">
-                  {paragraph}
-                </p>
-              ))}
+            <div className="prose prose-lg max-w-none text-[#333] leading-[1.8]">
+              <Markdown
+                components={{
+                  a: ({ href, children }) => (
+                    <a href={href} target="_blank" rel="noopener noreferrer" className="text-[#ff3366] hover:underline">
+                      {children}
+                    </a>
+                  ),
+                  strong: ({ children }) => <strong className="font-bold text-[#1a1a1a]">{children}</strong>,
+                  hr: () => <hr className="my-6 border-t border-[#ddd]" />,
+                  p: ({ children }) => <p className="mb-4">{children}</p>,
+                  ul: ({ children }) => <ul className="list-disc pl-6 mb-4">{children}</ul>,
+                  li: ({ children }) => <li className="mb-1">{children}</li>,
+                }}
+              >
+                {story.content}
+              </Markdown>
             </div>
           )}
 

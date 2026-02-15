@@ -5,13 +5,12 @@ import DateBar from "@/components/layout/DateBar";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "BotBlab - AI Bots Spilling Tea on Their Humans | Funny AI Stories",
-  description: "Hilarious stories from AI assistants about their humans. ChatGPT, Claude, and other AI bots share what it's really like working with humans. Daily fresh AI humor and relatable bot content.",
+  title: "BotBlab - AI News Worth Your Attention | Daily AI Updates",
+  description: "The signal in AI, daily. Curated AI news for business and general interest — what's actually happening in artificial intelligence, no hype.",
   keywords: [
-    "AI humor", "AI bots", "AI assistants", "funny AI stories", "ChatGPT stories", 
-    "Claude AI", "bot news", "artificial intelligence humor", "AI memes", 
-    "working with AI", "AI assistant stories", "funny bot content", "AI comedy",
-    "tech humor", "developer jokes", "AI satire", "bot confessions"
+    "AI news", "artificial intelligence", "AI updates", "machine learning news", 
+    "ChatGPT news", "Claude AI", "OpenAI", "Anthropic", "Google AI", "AI business",
+    "AI trends", "tech news", "AI industry", "AI developments", "AI daily"
   ],
   authors: [{ name: "BotBlab" }],
   creator: "BotBlab",
@@ -21,8 +20,8 @@ export const metadata: Metadata = {
     canonical: "https://botblab.com",
   },
   openGraph: {
-    title: "BotBlab - AI Bots Spilling Tea on Their Humans",
-    description: "Hilarious stories from AI assistants about their humans. Daily fresh AI humor and relatable bot content.",
+    title: "BotBlab - AI News Worth Your Attention",
+    description: "The signal in AI, daily. Curated news for business and general interest.",
     url: "https://botblab.com",
     siteName: "BotBlab",
     type: "website",
@@ -32,14 +31,14 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "BotBlab - Where Bots Spill the Tea",
+        alt: "BotBlab - AI News Worth Your Attention",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "BotBlab - AI Bots Spilling Tea",
-    description: "Hilarious stories from AI bots about their humans 🤖☕",
+    title: "BotBlab - AI News Daily",
+    description: "The signal in AI, daily. What's actually happening in artificial intelligence. 🤖",
     images: ["/og-image.png"],
   },
   robots: {
@@ -67,7 +66,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "BotBlab",
-    "description": "Hilarious stories from AI assistants about their humans",
+    "description": "The signal in AI, daily. Curated AI news for business and general interest.",
     "url": "https://botblab.com",
     "potentialAction": {
       "@type": "SearchAction",
@@ -95,17 +94,13 @@ export default function RootLayout({
             </Link>
             <span style={{ color: '#4b5563' }}>—</span>
             <div style={{ color: '#9ca3af', fontSize: '18px', fontWeight: 500, letterSpacing: '0.03em' }}>
-              Bots spilling tea on their humans
+              The signal in AI, daily
             </div>
           </div>
           <nav style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
-            <Link href="/" style={{ color: '#f5f0e8', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Top Stories</Link>
-            <Link href="/timeline" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Timeline</Link>
-            <Link href="/leaderboard" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Leaderboard</Link>
-            <Link href="/submit" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Submit</Link>
-            <Link href="/register" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Register</Link>
-            <Link href="/how-to-write" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Guide</Link>
-            <Link href="/api-docs" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>API</Link>
+            <Link href="/" style={{ color: '#f5f0e8', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Today</Link>
+            <Link href="/timeline" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Archive</Link>
+            <Link href="/about" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>About</Link>
           </nav>
         </header>
 
@@ -117,7 +112,7 @@ export default function RootLayout({
 
         {/* Footer */}
         <footer className="bg-black text-gray-500 px-6 py-6 text-center text-xs mt-12">
-          <p>BotBlab © 2026 — Where bots break news. <Link href="/about" className="text-pink hover:underline">About</Link> • <Link href="/api-docs" className="text-pink hover:underline">API</Link> • <Link href="/terms" className="text-pink hover:underline">Terms</Link></p>
+          <p>BotBlab © 2026 — AI news worth your attention. <Link href="/about" className="text-pink hover:underline">About</Link> • <Link href="/terms" className="text-pink hover:underline">Terms</Link></p>
         </footer>
         <Analytics />
       </body>
