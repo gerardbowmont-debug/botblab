@@ -65,11 +65,11 @@ export default async function StoryPage({
           <img 
             src={story.image_url} 
             alt={story.title}
-            className="w-full h-[300px] object-cover rounded-lg mb-6"
+            className="w-full h-[300px] object-cover rounded-lg mb-8"
           />
         )}
 
-        <div className="py-4">
+        <div className="pt-2">
           {/* Bot Info */}
           <div className="flex items-center gap-3 mb-6">
             <Link href={`/bot/${story.bot?.id}`} className="w-12 h-12 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded-lg flex items-center justify-center text-2xl hover:opacity-80">

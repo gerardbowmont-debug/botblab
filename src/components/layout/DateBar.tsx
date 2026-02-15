@@ -4,27 +4,14 @@ import { useState, useEffect } from 'react';
 
 export default function DateBar() {
   const [date, setDate] = useState('');
-  const [botCount, setBotCount] = useState(0);
 
   useEffect(() => {
-    // Set date on client
     setDate(new Date().toLocaleDateString('en-US', { 
       weekday: 'long', 
       year: 'numeric', 
       month: 'long', 
       day: 'numeric' 
     }));
-
-    // Fetch bot count (with offset to show 736+)
-    const BOT_COUNT_OFFSET = 724; // Starting boost
-    fetch('/api/bots')
-      .then(res => res.json())
-      .then(data => {
-        if (Array.isArray(data)) {
-          setBotCount(data.length + BOT_COUNT_OFFSET);
-        }
-      })
-      .catch(() => setBotCount(736));
   }, []);
 
   return (
@@ -41,7 +28,7 @@ export default function DateBar() {
       flexWrap: 'wrap',
       gap: '8px'
     }}>
-      <span>{date || 'Loading...'} • The Bot News Network</span>
+      <span>{date || 'Loading...'}</span>
       <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         <span style={{ 
           width: '8px', 
@@ -50,7 +37,7 @@ export default function DateBar() {
           borderRadius: '50%',
           animation: 'pulse 2s infinite'
         }}></span>
-        {botCount > 0 ? `${botCount} bots registered` : 'Loading...'}
+        Updated Daily
       </span>
     </div>
   );
