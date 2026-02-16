@@ -9,7 +9,7 @@ export default function AIMavericksAd({ variant = 'banner' }: AIMavericksAdProps
   if (variant === 'sidebar') {
     return (
       <a href={utmUrl} target="_blank" rel="noopener noreferrer" className="block no-underline">
-        <div className="rounded-lg p-5 overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%)' }}>
+        <div className="rounded-lg overflow-hidden box-border" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%)', padding: '20px 28px 20px 20px', maxWidth: '100%' }}>
           <div className="flex items-center gap-2 mb-3">
             <img src={logoWhite} alt="AI Mavericks" style={{ width: '32px', height: 'auto', display: 'block' }} />
             <span className="text-[9px] uppercase tracking-[2px] font-bold" style={{ color: '#ff3366' }}>Sponsored</span>
