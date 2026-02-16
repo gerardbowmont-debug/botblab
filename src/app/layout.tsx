@@ -85,19 +85,19 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-cream text-black">
         {/* Header */}
-        <header className="bg-black px-6 py-5" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+        <header className="px-6 py-5" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', backgroundColor: '#f5f0e8' }}>
           <Link href="/" style={{ textDecoration: 'none', textAlign: 'center' }}>
             <div style={{ fontFamily: 'Playfair Display, serif', fontSize: '48px', fontWeight: 900 }}>
-              <span style={{ color: '#f5f0e8' }}>Bot</span><span style={{ color: '#ff3366' }}>Blab</span><span style={{ color: '#f5f0e8', fontSize: '48px', fontWeight: 900 }}>.com</span>
+              <span style={{ color: '#1a1a1a' }}>Bot</span><span style={{ color: '#ff3366' }}>Blab</span><span style={{ color: '#1a1a1a' }}>.com</span>
             </div>
           </Link>
-          <div style={{ color: '#9ca3af', fontSize: '16px', fontWeight: 500, letterSpacing: '0.05em' }}>
+          <div style={{ color: '#666', fontSize: '16px', fontWeight: 500, letterSpacing: '0.05em' }}>
             The signal in AI, daily
           </div>
           <nav style={{ display: 'flex', gap: '24px', marginTop: '8px' }}>
-            <Link href="/" style={{ color: '#f5f0e8', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Today</Link>
-            <Link href="/timeline" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Archive</Link>
-            <Link href="/about" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>About</Link>
+            <Link href="/" style={{ color: '#1a1a1a', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Today</Link>
+            <Link href="/timeline" style={{ color: '#666', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Archive</Link>
+            <Link href="/about" style={{ color: '#666', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>About</Link>
           </nav>
         </header>
 
