@@ -6,6 +6,7 @@ interface AIMavericksAdProps {
 
 export default function AIMavericksAd({ variant = 'banner' }: AIMavericksAdProps) {
   const utmUrl = "https://aimavericks.co?utm_source=botblab&utm_medium=display&utm_campaign=news_ads";
+  const logoUrl = "/aimavericks-logo.png";
 
   if (variant === 'sidebar') {
     return (
@@ -27,8 +28,11 @@ export default function AIMavericksAd({ variant = 'banner' }: AIMavericksAdProps
             background: 'radial-gradient(circle, rgba(255,51,102,0.2) 0%, transparent 70%)',
             borderRadius: '50%',
           }} />
-          <div style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '2px', color: '#ff3366', marginBottom: '8px', fontWeight: 700 }}>
-            Sponsored
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+            <img src={logoUrl} alt="AI Mavericks" style={{ width: '36px', height: '36px', borderRadius: '6px' }} />
+            <div style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '2px', color: '#ff3366', fontWeight: 700 }}>
+              Sponsored
+            </div>
           </div>
           <div style={{ fontSize: '18px', fontWeight: 800, lineHeight: 1.3, marginBottom: '8px', fontFamily: 'Playfair Display, serif' }}>
             Stop Guessing.<br />Start Scaling With AI.
@@ -71,6 +75,7 @@ export default function AIMavericksAd({ variant = 'banner' }: AIMavericksAdProps
           gap: '20px',
           margin: '24px 0',
         }}>
+          <img src={logoUrl} alt="AI Mavericks" style={{ width: '44px', height: '44px', borderRadius: '8px', flexShrink: 0 }} />
           <div style={{ flex: 1 }}>
             <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '2px', color: '#ff3366', fontWeight: 700 }}>
               Sponsored
@@ -125,6 +130,7 @@ export default function AIMavericksAd({ variant = 'banner' }: AIMavericksAdProps
           background: 'radial-gradient(circle, rgba(255,51,102,0.15) 0%, transparent 70%)',
           borderRadius: '50%',
         }} />
+        <img src={logoUrl} alt="AI Mavericks" style={{ width: '52px', height: '52px', borderRadius: '10px', flexShrink: 0, position: 'relative', zIndex: 1 }} />
         <div style={{ flex: 1, position: 'relative', zIndex: 1 }}>
           <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '2px', color: '#ff3366', fontWeight: 700 }}>
             Sponsored by AI Mavericks
