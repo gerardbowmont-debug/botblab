@@ -52,10 +52,10 @@ export default function AIMavericksAd({ variant = 'banner' }: AIMavericksAdProps
   // Default: full-width banner
   return (
     <a href={utmUrl} target="_blank" rel="noopener noreferrer" className="block no-underline">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 p-8 sm:p-10 relative overflow-hidden rounded-lg" style={{ background: 'linear-gradient(90deg, #0a0a0a 0%, #1a1a2e 40%, #16213e 100%)' }}>
+      <div className="flex flex-col sm:flex-row items-center gap-5 sm:gap-6 px-8 py-10 sm:px-12 sm:py-10 relative overflow-hidden rounded-lg mx-4 sm:mx-0" style={{ background: 'linear-gradient(90deg, #0a0a0a 0%, #1a1a2e 40%, #16213e 100%)' }}>
         <div className="absolute -top-12 right-24 w-[200px] h-[200px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(255,51,102,0.15) 0%, transparent 70%)' }} />
-        <img src={logoWhite} alt="AI Mavericks" className="w-12 h-12 sm:w-16 sm:h-16 object-contain flex-shrink-0 relative z-10" />
-        <div className="flex-1 relative z-10">
+        <img src={logoWhite} alt="AI Mavericks" className="w-16 h-16 sm:w-16 sm:h-16 object-contain flex-shrink-0 relative z-10" style={{ maxWidth: '64px', maxHeight: '64px' }} />
+        <div className="flex-1 relative z-10 text-center sm:text-left">
           <span className="text-[10px] uppercase tracking-[2px] font-bold" style={{ color: '#ff3366' }}>Sponsored by AI Mavericks</span>
           <div className="text-base sm:text-xl font-extrabold mt-1 font-headline" style={{ color: '#ffffff' }}>
             The AI Hacks Your Competitors Don&apos;t Want You to Know
