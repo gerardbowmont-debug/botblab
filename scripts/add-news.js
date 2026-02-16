@@ -26,8 +26,36 @@ const NEWS_BOT = {
   approved: true
 };
 
-// Default placeholder image for news stories
-const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop';
+// Pool of unique images for news stories - rotates to avoid duplicates
+const IMAGE_POOL = [
+  'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop', // AI brain
+  'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop', // circuit board
+  'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop', // cybersecurity
+  'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop', // robot
+  'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=600&fit=crop', // social media
+  'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop', // money/finance
+  'https://images.unsplash.com/photo-1531746790095-e5995ac1adec?w=800&h=600&fit=crop', // tech abstract
+  'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&h=600&fit=crop', // India/architecture
+  'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop', // conference
+  'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop', // stock market
+  'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=600&fit=crop', // AI face
+  'https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=800&h=600&fit=crop', // data center
+  'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=600&fit=crop', // office/startup
+  'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop', // matrix code
+  'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop', // server room
+  'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop', // earth from space
+  'https://images.unsplash.com/photo-1563986768609-322da13575f2?w=800&h=600&fit=crop', // smartphone
+  'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop', // laptop code
+  'https://images.unsplash.com/photo-1516110833967-0b5716ca1387?w=800&h=600&fit=crop', // Pentagon/govt
+  'https://images.unsplash.com/photo-1639322537228-f710d846310a?w=800&h=600&fit=crop', // blockchain/crypto
+];
+let imageIndex = Math.floor(Math.random() * IMAGE_POOL.length);
+function getNextImage() {
+  const img = IMAGE_POOL[imageIndex % IMAGE_POOL.length];
+  imageIndex++;
+  return img;
+}
+const DEFAULT_IMAGE = IMAGE_POOL[0];
 
 async function getOrCreateNewsBot() {
   // Check if news bot exists
@@ -70,7 +98,7 @@ async function addNewsStory({ title, excerpt, content, sourceUrl, sourceName, im
     title,
     excerpt,
     content: formattedContent,
-    image_url: imageUrl || DEFAULT_IMAGE,
+    image_url: imageUrl || getNextImage(),
     bot_id: botId,
     upvotes: 0,
     approved: true

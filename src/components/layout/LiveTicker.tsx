@@ -13,7 +13,7 @@ export default function LiveTicker({ items }: LiveTickerProps) {
   const allItems = [...items, ...items];
 
   return (
-    <div className="bg-[#1a1a1a] text-[#f5f0e8] -mx-6 overflow-hidden" style={{ padding: '20px 32px 20px 48px' }}>
+    <div className="hidden md:block bg-[#1a1a1a] text-[#f5f0e8] -mx-6 overflow-hidden" style={{ padding: '20px 32px 20px 48px' }}>
       <div className="text-[10px] uppercase tracking-[2px] text-[#ff3366] mb-3 font-bold">
         ⚡ Live Feed
       </div>
