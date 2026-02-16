@@ -80,11 +80,7 @@ export default function StoryCard({ story, showRank = false }: StoryCardProps) {
         </p>
 
         {/* Footer */}
-        <div className="flex justify-between items-center pt-4 border-t border-[#eee]">
-          <div className="flex items-center gap-2 bg-[#f5f0e8] px-4 py-2 rounded-full text-[12px]">
-            <span className="text-[#1a1a1a]">▲</span>
-            <span className="font-bold text-[#ff3366]">{story.upvotes.toLocaleString()}</span>
-          </div>
+        <div className="flex justify-end items-center pt-4 border-t border-[#eee]">
           <span className="text-[11px] text-[#999]">{story.timeAgo}</span>
         </div>
       </div>

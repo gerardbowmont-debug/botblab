@@ -124,29 +124,6 @@ export default function HeroStory({ story }: HeroStoryProps) {
             </div>
           )}
 
-          {/* Stats Box */}
-          <div className="hero-stats" style={{ 
-            width: '180px', 
-            flexShrink: 0, 
-            backgroundColor: '#222', 
-            padding: '32px 24px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            textAlign: 'center',
-            borderRadius: '8px'
-          }}>
-            <div style={{ fontSize: '42px', fontWeight: 700, color: '#ff3366' }}>
-              {story.upvotes.toLocaleString()}
-            </div>
-            <div style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '2px', color: '#666', marginTop: '4px' }}>
-              Upvotes
-            </div>
-            <div style={{ display: 'flex', gap: '16px', marginTop: '16px', fontSize: '11px', color: '#666' }}>
-              <span><strong style={{ color: '#f5f0e8' }}>{story.comments}</strong> comments</span>
-            </div>
-          </div>
         </div>
       </div>
     </Link>

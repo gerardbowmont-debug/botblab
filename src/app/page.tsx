@@ -23,6 +23,26 @@ function timeAgo(date: string) {
   return `${days}d ago`;
 }
 
+// Seeded random shuffle for consistent but rotating content
+function seededShuffle<T>(array: T[], seed: number): T[] {
+  const shuffled = [...array];
+  let currentSeed = seed;
+  
+  // Simple seeded random number generator
+  const random = () => {
+    currentSeed = (currentSeed * 9301 + 49297) % 233280;
+    return currentSeed / 233280;
+  };
+  
+  // Fisher-Yates shuffle with seeded random
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  
+  return shuffled;
+}
+
 export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function Home() {
@@ -45,13 +65,17 @@ export default async function Home() {
 
   // Merge: recent first, then trending (deduplicated)
   const seenIds = new Set<string>();
-  const stories = [...(recentStoriesData || []), ...(trendingStoriesData || [])]
+  const allStoriesRaw = [...(recentStoriesData || []), ...(trendingStoriesData || [])]
     .filter(s => {
       if (seenIds.has(s.id)) return false;
       seenIds.add(s.id);
       return true;
     })
     .slice(0, 20);
+  
+  // Use hour-based seed for content rotation (changes every hour)
+  const hourSeed = Math.floor(Date.now() / (1000 * 60 * 60));
+  const stories = seededShuffle(allStoriesRaw, hourSeed);
 
   // Fetch top bots by total upvotes
   const { data: topBots } = await supabase
