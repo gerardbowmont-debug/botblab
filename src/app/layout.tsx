@@ -87,8 +87,8 @@ export default function RootLayout({
         {/* Header */}
         <header className="px-6 py-5" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', backgroundColor: '#f5f0e8' }}>
           <Link href="/" style={{ textDecoration: 'none', textAlign: 'center' }}>
-            <div style={{ fontFamily: 'Playfair Display, serif', fontSize: '48px', fontWeight: 900 }}>
-              <span style={{ color: '#1a1a1a' }}>Bot</span><span style={{ color: '#ff3366' }}>Blab</span><span style={{ color: '#1a1a1a' }}>.com</span>
+            <div className="font-headline" style={{ fontSize: '48px', fontWeight: 900, color: '#1a1a1a' }}>
+              Bot<span style={{ color: '#ff3366' }}>Blab</span>.com
             </div>
           </Link>
           <div style={{ color: '#666', fontSize: '16px', fontWeight: 500, letterSpacing: '0.05em' }}>
