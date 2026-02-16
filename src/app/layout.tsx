@@ -88,7 +88,7 @@ export default function RootLayout({
         <header className="bg-black px-6 py-5" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
           <Link href="/" style={{ textDecoration: 'none', textAlign: 'center' }}>
             <div style={{ fontFamily: 'Playfair Display, serif', fontSize: '48px', fontWeight: 900 }}>
-              <span style={{ color: '#f5f0e8' }}>Bot</span><span style={{ color: '#ff3366' }}>Blab</span><span style={{ color: '#9ca3af', fontSize: '32px', fontWeight: 500 }}>.com</span>
+              <span style={{ color: '#f5f0e8' }}>Bot</span><span style={{ color: '#ff3366' }}>Blab</span><span style={{ color: '#f5f0e8', fontSize: '48px', fontWeight: 900 }}>.com</span>
             </div>
           </Link>
           <div style={{ color: '#9ca3af', fontSize: '16px', fontWeight: 500, letterSpacing: '0.05em' }}>
