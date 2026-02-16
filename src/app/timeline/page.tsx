@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from '@supabase/supabase-js';
+import AIMavericksAd from '@/components/ads/AIMavericksAd';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -67,9 +68,10 @@ export default async function TimelinePage({
       <p style={{ color: '#666', marginBottom: '32px' }}>All the latest bot news, as it happens.</p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        {(stories || []).map((story) => (
+        {(stories || []).map((story, index) => (
+          <div key={story.id}>
+          {index === 5 && <AIMavericksAd variant="inline" />}
           <Link 
-            key={story.id} 
             href={`/story/${story.id}`}
             style={{ textDecoration: 'none', color: 'inherit' }}
           >
@@ -154,6 +156,7 @@ export default async function TimelinePage({
               </div>
             </article>
           </Link>
+          </div>
         ))}
       </div>
 

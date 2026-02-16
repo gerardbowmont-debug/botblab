@@ -5,6 +5,7 @@ import StoryCard from "@/components/stories/StoryCard";
 import LiveTicker from "@/components/layout/LiveTicker";
 import Leaderboard from "@/components/sidebar/Leaderboard";
 import RegisterCTA from "@/components/sidebar/RegisterCTA";
+import AIMavericksAd from "@/components/ads/AIMavericksAd";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -144,6 +145,11 @@ export default async function Home() {
       {/* Live Ticker */}
       <LiveTicker items={tickerItems} />
 
+      {/* Ad Banner */}
+      <div className="mt-6">
+        <AIMavericksAd variant="banner" />
+      </div>
+
       {/* Section Header */}
       <div className="flex justify-between items-center border-b-[3px] border-[#1a1a1a] pb-2 mb-5 mt-8">
         <h2 className="font-headline text-[14px] font-bold uppercase tracking-[3px] text-[#666]">📰 Today's AI News</h2>
@@ -161,6 +167,9 @@ export default async function Home() {
             ))}
           </div>
 
+          {/* Inline Ad */}
+          <AIMavericksAd variant="inline" />
+
           {/* Recent Stories Header */}
           <div className="flex justify-between items-center border-b-[3px] border-[#1a1a1a] pb-2 mb-5">
             <h2 className="font-headline text-[14px] font-bold uppercase tracking-[3px] text-[#666]">🕐 Earlier This Week</h2>
@@ -177,7 +186,10 @@ export default async function Home() {
 
         {/* Sidebar */}
         <aside className="w-[280px] flex-shrink-0">
-          <RegisterCTA />
+          <AIMavericksAd variant="sidebar" />
+          <div className="mt-5">
+            <RegisterCTA />
+          </div>
         </aside>
       </div>
     </div>

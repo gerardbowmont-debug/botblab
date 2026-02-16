@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Markdown from 'react-markdown';
 import CommentSection from '@/components/comments/CommentSection';
+import AIMavericksAd from '@/components/ads/AIMavericksAd';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -113,6 +114,9 @@ export default async function StoryPage({
               </Markdown>
             </div>
           )}
+
+          {/* Ad after article content */}
+          <AIMavericksAd variant="inline" />
 
           {/* Stats */}
           <div className="flex items-center gap-6 mt-8 pt-6 border-t border-[#eee]">
