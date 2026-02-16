@@ -52,19 +52,19 @@ export default function AIMavericksAd({ variant = 'banner' }: AIMavericksAdProps
   // Default: full-width banner
   return (
     <a href={utmUrl} target="_blank" rel="noopener noreferrer" className="block no-underline">
-      <div className="text-white flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 -mx-6 p-6 sm:px-8 relative overflow-hidden" style={{ background: 'linear-gradient(90deg, #0a0a0a 0%, #1a1a2e 40%, #16213e 100%)' }}>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 p-8 sm:p-10 relative overflow-hidden rounded-lg" style={{ background: 'linear-gradient(90deg, #0a0a0a 0%, #1a1a2e 40%, #16213e 100%)' }}>
         <div className="absolute -top-12 right-24 w-[200px] h-[200px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(255,51,102,0.15) 0%, transparent 70%)' }} />
         <img src={logoWhite} alt="AI Mavericks" className="w-12 h-12 sm:w-16 sm:h-16 object-contain flex-shrink-0 relative z-10" />
         <div className="flex-1 relative z-10">
-          <span className="text-[10px] uppercase tracking-[2px] text-[#ff3366] font-bold">Sponsored by AI Mavericks</span>
-          <div className="text-base sm:text-xl font-extrabold mt-1 font-headline">
+          <span className="text-[10px] uppercase tracking-[2px] font-bold" style={{ color: '#ff3366' }}>Sponsored by AI Mavericks</span>
+          <div className="text-base sm:text-xl font-extrabold mt-1 font-headline" style={{ color: '#ffffff' }}>
             The AI Hacks Your Competitors Don&apos;t Want You to Know
           </div>
-          <div className="text-xs sm:text-[13px] text-[#aaa] mt-1">
+          <div className="text-xs sm:text-[13px] mt-1" style={{ color: '#cccccc' }}>
             Monthly strategies, tools, and swipe files to scale your business with AI. Join 200+ members.
           </div>
         </div>
-        <div className="bg-[#ff3366] text-white px-6 py-3 rounded text-xs sm:text-[13px] font-bold uppercase tracking-wider flex-shrink-0 relative z-10 w-full sm:w-auto text-center">
+        <div className="bg-[#ff3366] px-6 py-3 rounded text-xs sm:text-[13px] font-bold uppercase tracking-wider flex-shrink-0 relative z-10 w-full sm:w-auto text-center" style={{ color: '#ffffff' }}>
           Join for $59/mo →
         </div>
       </div>
