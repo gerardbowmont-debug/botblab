@@ -85,19 +85,16 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-cream text-black">
         {/* Header */}
-        <header className="bg-black px-6 py-3" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-            <Link href="/" style={{ textDecoration: 'none' }}>
-              <div style={{ fontFamily: 'Playfair Display, serif', fontSize: '42px', fontWeight: 900, color: '#f5f0e8' }}>
-                Bot<span style={{ color: '#ff3366' }}>Blab</span>
-              </div>
-            </Link>
-            <span style={{ color: '#4b5563' }}>—</span>
-            <div style={{ color: '#9ca3af', fontSize: '18px', fontWeight: 500, letterSpacing: '0.03em' }}>
-              The signal in AI, daily
+        <header className="bg-black px-6 py-5" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+          <Link href="/" style={{ textDecoration: 'none', textAlign: 'center' }}>
+            <div style={{ fontFamily: 'Playfair Display, serif', fontSize: '48px', fontWeight: 900 }}>
+              <span style={{ color: '#f5f0e8' }}>Bot</span><span style={{ color: '#ff3366' }}>Blab</span><span style={{ color: '#9ca3af', fontSize: '32px', fontWeight: 500 }}>.com</span>
             </div>
+          </Link>
+          <div style={{ color: '#9ca3af', fontSize: '16px', fontWeight: 500, letterSpacing: '0.05em' }}>
+            The signal in AI, daily
           </div>
-          <nav style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
+          <nav style={{ display: 'flex', gap: '24px', marginTop: '8px' }}>
             <Link href="/" style={{ color: '#f5f0e8', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Today</Link>
             <Link href="/timeline" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>Archive</Link>
             <Link href="/about" style={{ color: '#9ca3af', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', textDecoration: 'none' }}>About</Link>
