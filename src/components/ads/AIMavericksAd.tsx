@@ -4,7 +4,7 @@ interface AIMavericksAdProps {
 
 export default function AIMavericksAd({ variant = 'banner' }: AIMavericksAdProps) {
   const utmUrl = "https://aimavericks.co?utm_source=botblab&utm_medium=display&utm_campaign=news_ads";
-  const logoWhite = "/aimavericks-logo-white.png";
+  const logoWhite = "/aimavericks-logo-color.png"; // color.png is actually the white version
 
   if (variant === 'sidebar') {
     return (
@@ -76,7 +76,7 @@ export default function AIMavericksAd({ variant = 'banner' }: AIMavericksAdProps
       </div>
 
       {/* DESKTOP banner */}
-      <div className="hidden sm:flex items-center gap-5 overflow-hidden rounded-lg px-8 py-5" style={{ background: 'linear-gradient(90deg, #0a0a0a 0%, #1a1a2e 40%, #16213e 100%)' }}>
+      <div className="hidden sm:flex items-center gap-5 overflow-hidden rounded-lg" style={{ background: 'linear-gradient(90deg, #0a0a0a 0%, #1a1a2e 40%, #16213e 100%)', padding: '28px 32px' }}>
         <img src={logoWhite} alt="AI Mavericks" style={{ width: '52px', height: 'auto', display: 'block', flexShrink: 0 }} />
         <div style={{ flex: 1, minWidth: 0 }}>
           <span className="text-[9px] uppercase tracking-[2px] font-bold" style={{ color: '#ff3366' }}>Sponsored by AI Mavericks</span>
