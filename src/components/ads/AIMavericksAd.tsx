@@ -61,8 +61,8 @@ export default function AIMavericksAd({ variant = 'banner' }: AIMavericksAdProps
   return (
     <a href={utmUrl} target="_blank" rel="noopener noreferrer" className="block no-underline">
       {/* MOBILE banner */}
-      <div className="block sm:hidden rounded-lg overflow-hidden mx-2 px-6 py-6 text-center" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%)' }}>
-        <img src={logoWhite} alt="AI Mavericks" style={{ width: '48px', height: 'auto', display: 'block', margin: '0 auto 10px' }} />
+      <div className="block sm:hidden rounded-lg overflow-hidden mx-2 text-center" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%)', padding: '32px 24px 28px' }}>
+        <img src={logoWhite} alt="AI Mavericks" style={{ width: '48px', height: 'auto', display: 'block', margin: '0 auto 12px' }} />
         <span className="text-[9px] uppercase tracking-[2px] font-bold" style={{ color: '#ff3366' }}>Sponsored by AI Mavericks</span>
         <div className="text-base font-extrabold leading-tight mt-1 mb-1" style={{ color: '#ffffff' }}>
           The AI Hacks Your Competitors Don&apos;t Want You to Know
