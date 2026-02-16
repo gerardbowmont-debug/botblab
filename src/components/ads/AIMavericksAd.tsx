@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 interface AIMavericksAdProps {
   variant?: 'banner' | 'sidebar' | 'inline';
 }
@@ -11,52 +9,23 @@ export default function AIMavericksAd({ variant = 'banner' }: AIMavericksAdProps
 
   if (variant === 'sidebar') {
     return (
-      <a href={utmUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block' }}>
-        <div style={{
-          background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%)',
-          borderRadius: '8px',
-          padding: '24px',
-          color: '#fff',
-          position: 'relative',
-          overflow: 'hidden',
-        }}>
-          <div style={{
-            position: 'absolute',
-            top: '-30px',
-            right: '-30px',
-            width: '120px',
-            height: '120px',
-            background: 'radial-gradient(circle, rgba(255,51,102,0.2) 0%, transparent 70%)',
-            borderRadius: '50%',
-          }} />
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
-            <img src={logoWhite} alt="AI Mavericks" style={{ width: '48px', height: '48px', objectFit: 'contain' }} />
-            <div style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '2px', color: '#ff3366', fontWeight: 700 }}>
-              Sponsored
-            </div>
+      <a href={utmUrl} target="_blank" rel="noopener noreferrer" className="block no-underline">
+        <div className="rounded-lg p-6 text-white relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%)' }}>
+          <div className="absolute -top-8 -right-8 w-[120px] h-[120px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(255,51,102,0.2) 0%, transparent 70%)' }} />
+          <div className="flex items-center gap-3 mb-3">
+            <img src={logoWhite} alt="AI Mavericks" className="w-12 h-12 object-contain" />
+            <div className="text-[10px] uppercase tracking-[2px] text-[#ff3366] font-bold">Sponsored</div>
           </div>
-          <div style={{ fontSize: '18px', fontWeight: 800, lineHeight: 1.3, marginBottom: '8px', fontFamily: 'Playfair Display, serif' }}>
+          <div className="text-lg font-extrabold leading-tight mb-2 font-headline">
             Stop Guessing.<br />Start Scaling With AI.
           </div>
-          <p style={{ fontSize: '12px', color: '#aaa', lineHeight: 1.5, marginBottom: '16px' }}>
+          <p className="text-xs text-[#aaa] leading-relaxed mb-4">
             Join AI Mavericks and get monthly AI hacks, tools, and strategies to grow your business on autopilot.
           </p>
-          <div style={{
-            display: 'inline-block',
-            background: '#ff3366',
-            color: '#fff',
-            padding: '8px 20px',
-            borderRadius: '4px',
-            fontSize: '12px',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            letterSpacing: '1px',
-          }}>
+          <div className="inline-block bg-[#ff3366] text-white px-5 py-2 rounded text-xs font-bold uppercase tracking-wider">
             Join for $59/mo →
           </div>
-          <div style={{ fontSize: '10px', color: '#666', marginTop: '8px' }}>
-            AIMavericks.co
-          </div>
+          <div className="text-[10px] text-[#666] mt-2">AIMavericks.co</div>
         </div>
       </a>
     );
@@ -64,42 +33,15 @@ export default function AIMavericksAd({ variant = 'banner' }: AIMavericksAdProps
 
   if (variant === 'inline') {
     return (
-      <a href={utmUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block' }}>
-        <div style={{
-          background: 'linear-gradient(90deg, #0a0a0a 0%, #1a1a2e 100%)',
-          borderRadius: '8px',
-          padding: '20px 28px',
-          color: '#fff',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '20px',
-          margin: '24px 0',
-        }}>
-          <img src={logoWhite} alt="AI Mavericks" style={{ width: '52px', height: '52px', objectFit: 'contain', flexShrink: 0 }} />
-          <div style={{ flex: 1 }}>
-            <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '2px', color: '#ff3366', fontWeight: 700 }}>
-              Sponsored
-            </span>
-            <div style={{ fontSize: '16px', fontWeight: 700, marginTop: '4px' }}>
-              AI is changing business. Are you keeping up?
-            </div>
-            <div style={{ fontSize: '12px', color: '#999', marginTop: '4px' }}>
-              Monthly AI hacks, tools, and strategies. $59/mo. AIMavericks.co
-            </div>
+      <a href={utmUrl} target="_blank" rel="noopener noreferrer" className="block no-underline">
+        <div className="rounded-lg p-5 text-white flex flex-col sm:flex-row items-start sm:items-center gap-4 my-6" style={{ background: 'linear-gradient(90deg, #0a0a0a 0%, #1a1a2e 100%)' }}>
+          <img src={logoWhite} alt="AI Mavericks" className="w-10 h-10 sm:w-[52px] sm:h-[52px] object-contain flex-shrink-0" />
+          <div className="flex-1 min-w-0">
+            <span className="text-[10px] uppercase tracking-[2px] text-[#ff3366] font-bold">Sponsored</span>
+            <div className="text-sm sm:text-base font-bold mt-1">AI is changing business. Are you keeping up?</div>
+            <div className="text-xs text-[#999] mt-1">Monthly AI hacks, tools, and strategies. $59/mo. AIMavericks.co</div>
           </div>
-          <div style={{
-            background: '#ff3366',
-            color: '#fff',
-            padding: '10px 24px',
-            borderRadius: '4px',
-            fontSize: '12px',
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            letterSpacing: '1px',
-            whiteSpace: 'nowrap',
-            flexShrink: 0,
-          }}>
+          <div className="bg-[#ff3366] text-white px-5 py-2.5 rounded text-xs font-bold uppercase tracking-wider flex-shrink-0 w-full sm:w-auto text-center">
             Learn More →
           </div>
         </div>
@@ -109,54 +51,20 @@ export default function AIMavericksAd({ variant = 'banner' }: AIMavericksAdProps
 
   // Default: full-width banner
   return (
-    <a href={utmUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block' }}>
-      <div style={{
-        background: 'linear-gradient(90deg, #0a0a0a 0%, #1a1a2e 40%, #16213e 100%)',
-        padding: '24px 32px',
-        color: '#fff',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: '24px',
-        margin: '0 -24px',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        <div style={{
-          position: 'absolute',
-          top: '-50px',
-          right: '100px',
-          width: '200px',
-          height: '200px',
-          background: 'radial-gradient(circle, rgba(255,51,102,0.15) 0%, transparent 70%)',
-          borderRadius: '50%',
-        }} />
-        <img src={logoWhite} alt="AI Mavericks" style={{ width: '64px', height: '64px', objectFit: 'contain', flexShrink: 0, position: 'relative', zIndex: 1 }} />
-        <div style={{ flex: 1, position: 'relative', zIndex: 1 }}>
-          <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '2px', color: '#ff3366', fontWeight: 700 }}>
-            Sponsored by AI Mavericks
-          </span>
-          <div style={{ fontSize: '20px', fontWeight: 800, marginTop: '4px', fontFamily: 'Playfair Display, serif' }}>
+    <a href={utmUrl} target="_blank" rel="noopener noreferrer" className="block no-underline">
+      <div className="text-white flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 -mx-6 p-6 sm:px-8 relative overflow-hidden" style={{ background: 'linear-gradient(90deg, #0a0a0a 0%, #1a1a2e 40%, #16213e 100%)' }}>
+        <div className="absolute -top-12 right-24 w-[200px] h-[200px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(255,51,102,0.15) 0%, transparent 70%)' }} />
+        <img src={logoWhite} alt="AI Mavericks" className="w-12 h-12 sm:w-16 sm:h-16 object-contain flex-shrink-0 relative z-10" />
+        <div className="flex-1 relative z-10">
+          <span className="text-[10px] uppercase tracking-[2px] text-[#ff3366] font-bold">Sponsored by AI Mavericks</span>
+          <div className="text-base sm:text-xl font-extrabold mt-1 font-headline">
             The AI Hacks Your Competitors Don&apos;t Want You to Know
           </div>
-          <div style={{ fontSize: '13px', color: '#aaa', marginTop: '4px' }}>
+          <div className="text-xs sm:text-[13px] text-[#aaa] mt-1">
             Monthly strategies, tools, and swipe files to scale your business with AI. Join 200+ members.
           </div>
         </div>
-        <div style={{
-          background: '#ff3366',
-          color: '#fff',
-          padding: '12px 28px',
-          borderRadius: '4px',
-          fontSize: '13px',
-          fontWeight: 700,
-          textTransform: 'uppercase',
-          letterSpacing: '1px',
-          whiteSpace: 'nowrap',
-          flexShrink: 0,
-          position: 'relative',
-          zIndex: 1,
-        }}>
+        <div className="bg-[#ff3366] text-white px-6 py-3 rounded text-xs sm:text-[13px] font-bold uppercase tracking-wider flex-shrink-0 relative z-10 w-full sm:w-auto text-center">
           Join for $59/mo →
         </div>
       </div>
