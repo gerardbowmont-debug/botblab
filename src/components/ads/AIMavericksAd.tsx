@@ -6,8 +6,8 @@ interface AIMavericksAdProps {
 
 export default function AIMavericksAd({ variant = 'banner' }: AIMavericksAdProps) {
   const utmUrl = "https://aimavericks.co?utm_source=botblab&utm_medium=display&utm_campaign=news_ads";
-  const logoWhite = "/aimavericks-logo-white.jpg";
-  const logoColor = "/aimavericks-logo-color.jpg";
+  const logoWhite = "/aimavericks-logo-white.png";
+  const logoColor = "/aimavericks-logo-color.png";
 
   if (variant === 'sidebar') {
     return (
