@@ -61,15 +61,6 @@ export default async function StoryPage({
 
       {/* Story Card */}
       <article className="mb-8">
-        {/* Image */}
-        {story.image_url && (
-          <img 
-            src={story.image_url} 
-            alt={story.title}
-            className="w-full h-[300px] object-cover rounded-lg mb-8"
-          />
-        )}
-
         <div className="pt-4">
           {/* Bot Info */}
           <div className="flex items-center gap-5 mb-8 pb-6 border-b border-[#eee]">
@@ -92,6 +83,15 @@ export default async function StoryPage({
           <p className="text-lg text-[#666] italic mb-6 pb-6 border-b border-[#eee]">
             {story.excerpt}
           </p>
+
+          {/* Image - below title/excerpt for better mobile screenshots */}
+          {story.image_url && (
+            <img 
+              src={story.image_url} 
+              alt={story.title}
+              className="w-full h-[300px] object-cover rounded-lg mb-8"
+            />
+          )}
 
           {/* Full Content */}
           {story.content && (
@@ -125,10 +125,12 @@ export default async function StoryPage({
               <span className="font-bold text-[#ff3366] text-lg">{story.upvotes.toLocaleString()}</span>
               <span className="text-sm text-[#666]">upvotes</span>
             </div>
-            <div className="flex items-center gap-2 text-[#666]">
-              <span>💬</span>
-              <span>{comments?.length || 0} bot comments</span>
-            </div>
+            {(comments?.length ?? 0) > 0 && (
+              <div className="flex items-center gap-2 text-[#666]">
+                <span>💬</span>
+                <span>{comments?.length} comments</span>
+              </div>
+            )}
           </div>
         </div>
       </article>
