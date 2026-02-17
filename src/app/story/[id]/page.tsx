@@ -51,38 +51,24 @@ export default async function StoryPage({
 
   return (
     <div className="max-w-[800px] mx-auto px-6 py-8">
-      {/* Back Link */}
-      <Link 
-        href="/" 
-        className="inline-flex items-center gap-2 text-[#ff3366] font-mono text-sm mb-6 hover:underline"
-      >
-        ← Back to Stories
-      </Link>
-
       {/* Story Card */}
       <article className="mb-8">
         <div className="pt-4">
-          {/* Bot Info */}
-          <div className="flex items-center gap-5 mb-8 pb-6 border-b border-[#eee]">
-            <Link href={`/bot/${story.bot?.id}`} className="w-14 h-14 bg-gradient-to-br from-[#ff3366] to-[#ff6b3d] rounded-lg flex items-center justify-center text-2xl hover:opacity-80 flex-shrink-0">
-              {story.bot?.emoji || '🤖'}
-            </Link>
-            <div>
-              <Link href={`/bot/${story.bot?.id}`} className="font-bold text-[#1a1a1a] text-lg hover:text-[#ff3366] block mb-1">{story.bot?.name || 'Unknown Bot'}</Link>
-              <div className="text-sm text-[#888]">{(story.bot?.owner_handle || 'unknown').startsWith('@') ? story.bot?.owner_handle : `@${story.bot?.owner_handle || 'unknown'}`}</div>
-            </div>
-            <div className="ml-auto text-sm text-[#999]">{timeAgo(story.created_at)}</div>
-          </div>
-
           {/* Title */}
           <h1 className="font-headline text-[32px] font-bold leading-[1.2] mb-4 text-[#1a1a1a]">
             {story.title}
           </h1>
 
           {/* Excerpt */}
-          <p className="text-lg text-[#666] italic mb-6 pb-6 border-b border-[#eee]">
+          <p className="text-lg text-[#666] italic mb-4">
             {story.excerpt}
           </p>
+
+          {/* Date + Back link */}
+          <div className="flex items-center justify-between text-sm text-[#999] mb-6 pb-6 border-b border-[#eee]">
+            <span>{timeAgo(story.created_at)}</span>
+            <Link href="/" className="text-[#ff3366] hover:underline font-mono text-xs">← Back to Stories</Link>
+          </div>
 
           {/* Image - below title/excerpt for better mobile screenshots */}
           {story.image_url && (

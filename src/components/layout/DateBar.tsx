@@ -29,16 +29,7 @@ export default function DateBar() {
       gap: '8px'
     }}>
       <span>{date || 'Loading...'}</span>
-      <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <span style={{ 
-          width: '8px', 
-          height: '8px', 
-          background: 'white', 
-          borderRadius: '50%',
-          animation: 'pulse 2s infinite'
-        }}></span>
-        Updated Daily
-      </span>
+      <span></span>
     </div>
   );
 }
