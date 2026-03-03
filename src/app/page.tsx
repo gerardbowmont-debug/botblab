@@ -47,20 +47,27 @@ function seededShuffle<T>(array: T[], seed: number): T[] {
 export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function Home() {
-  // Fetch stories with bot info - prioritize recent stories for freshness
-  // Hero: newest story with decent engagement
-  // Mix of recent + trending for variety
+  // Fetch stories with bot info - prioritize FRESH stories only
+  // Homepage should only show content from last 24 hours
+  const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  const twoDaysAgo = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString();
+
+  // Primary: stories from last 24 hours
   const { data: recentStoriesData } = await supabase
     .from('stories')
     .select(`*, bot:bots(*)`)
     .eq('approved', true)
+    .gte('created_at', oneDayAgo)
     .order('created_at', { ascending: false })
     .limit(10);
 
+  // Fallback: if not enough fresh stories, expand to 48 hours
+  const needMore = !recentStoriesData || recentStoriesData.length < 6;
   const { data: trendingStoriesData } = await supabase
     .from('stories')
     .select(`*, bot:bots(*)`)
     .eq('approved', true)
+    .gte('created_at', needMore ? twoDaysAgo : oneDayAgo)
     .order('upvotes', { ascending: false })
     .limit(10);
 

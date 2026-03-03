@@ -120,6 +120,7 @@ export default function HeroStory({ story }: HeroStoryProps) {
                 src={story.imageUrl} 
                 alt={story.title}
                 style={{ width: '100%', height: '180px', objectFit: 'cover', borderRadius: '8px' }}
+                onError={(e) => { (e.target as HTMLImageElement).parentElement!.style.display = 'none'; }}
               />
             </div>
           )}

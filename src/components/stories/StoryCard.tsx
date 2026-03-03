@@ -39,6 +39,7 @@ export default function StoryCard({ story, showRank = false }: StoryCardProps) {
           src={story.imageUrl} 
           alt={story.title}
           className="w-full h-[140px] object-cover"
+          onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
         />
       )}
       
